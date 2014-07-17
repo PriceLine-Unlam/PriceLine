@@ -311,6 +311,58 @@
 			{
 				background: #e4e4e4;
 			}
+			
+	.buttonMap
+	{
+		position: relative;
+		display: inline-block;
+		background: #FF8000;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 800;
+		outline: 0;
+		-moz-transition: background-color .25s ease-in-out;
+		-webkit-transition: background-color .25s ease-in-out;
+		-o-transition: background-color .25s ease-in-out;
+		-ms-transition: background-color .25s ease-in-out;
+		transition: background-color .25s ease-in-out;
+	}
+	
+		.buttonMap:hover
+		{
+			background: #424242;
+		}
+	
+		.buttonMap:active
+		{
+			background: #FF8000;
+		}
+	
+		.buttonMap.fa
+		{
+		}
+		
+			.buttonMap.fa:before
+			{
+				position: relative;
+			}
+	
+		.buttonMap.alt
+		{
+			background: #f1f1f1;
+			color: #444;
+		}
+
+			.buttonMap.alt:hover
+			{
+				background: #e8e8e8;
+			}
+
+			.buttonMap.alt:active
+			{
+				background: #e4e4e4;
+			}
 
 	ul.style1
 	{
