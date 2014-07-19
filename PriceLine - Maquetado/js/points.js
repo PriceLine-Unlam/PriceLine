@@ -12,101 +12,99 @@ var P1 = [
 
 var LocsA = [
     {
-        lat: 45.9,
-        lon: 10.9,
+        lat: -34.629391,
+        lon: -58.594055,
         title: 'Supermercado 4',
         html: ['<h2 align="center">Supermercado 4</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        icon: 'http://maps.google.com/mapfiles/markerA.png'
+		zoom: 14,
+        icon: 'http://maps.google.com/mapfiles/markerD.png'
     },
     {
-        lat: 44.8,
-        lon: 1.7,
+        lat: -34.606929,
+        lon: -58.564701,
         title: 'Supermercado 1',
         html: ['<h2 align="center">Supermercado 1</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        icon: 'http://maps.google.com/mapfiles/markerB.png',
-        show_infowindow: false
+		zoom: 14,
+        icon: 'http://maps.google.com/mapfiles/markerA.png'
     },
     {
-        lat: 51.5,
-        lon: -1.1,
+        lat: -34.679520,
+        lon: -58.563328,
         title: 'Supermercado 5',
         html: ['<h2 align="center">Supermercado 5</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        zoom: 8,
-        icon: 'http://maps.google.com/mapfiles/markerC.png'
+        zoom: 14,
+        icon: 'http://maps.google.com/mapfiles/markerE.png'
     }
 ];
 
 
 var LocsB = [
     {
-        lat: 52.1,
-        lon: 11.3,
+        lat: -34.639349,
+        lon: -58.598347,
         title: 'Supermercado 2',
         html: ['<h2 align="center">Supermercado 2</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        zoom: 8
+        zoom: 14,
+		icon: 'http://maps.google.com/mapfiles/markerB.png'
     },
     {
-        lat: 51.2,
-        lon: 22.2,
+        lat: -34.652761,
+        lon: -58.622520,
         title: 'Supermercado 6',
         html: ['<h2 align="center">Supermercado 6</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        zoom: 8
+        zoom: 14,
+		icon: 'http://maps.google.com/mapfiles/markerF.png'
     },
     {
-        lat: 49.4,
-        lon: 35.9,
+        lat: -34.624535,
+        lon: -58.635150,
         title: 'Supermercado 3',
         html: ['<h2 align="center">Supermercado 3</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        zoom: 4
+        zoom: 14,
+		icon: 'http://maps.google.com/mapfiles/markerC.png'
     },
     {
-        lat: 47.8,
-        lon: 15.6,
+        lat: -34.692594,
+        lon: -58.563739,
         title: 'Supermercado 7',
         html: ['<h2 align="center">Supermercado 7</h2>',
 				'<p align="center">Direccion 1234</p>',
-				'<br>',
-				'<ul align="center">',
-				'<li><a href="Registrar.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
+				'<ul class="ulMap" align="center">',
+				'<li><a href="FinBusqueda.html" class="buttonMap small fa fa-arrow-circle-right">Ir</a></li>',
 				'</ul>'
 		].join(''),
-        zoom: 6
+        zoom: 14,
+		icon: 'http://maps.google.com/mapfiles/markerG.png'
     }
 ];
 

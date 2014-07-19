@@ -363,6 +363,11 @@
 			{
 				background: #e4e4e4;
 			}
+			
+	.ulMap
+	{
+		margin-bottom: 0em;
+	}
 
 	ul.style1
 	{
@@ -403,6 +408,13 @@
 	footer
 	{
 		margin: 2.5em 0 0 0;
+	}
+	
+	.spanBanner
+	{
+		font-size: 2.75em;
+		line-height: 1.78em;
+		margin: 0;
 	}
 	
 	.box
