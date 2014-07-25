@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Verti by HTML5 UP</title>
+		<title>PriceLine</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -33,7 +33,7 @@
 						<div class="12u">
 						
 							<!-- Header -->
-							<?php  include('include/header.php');?>
+							<?php  include('includes/header.php');?>
 						</div>
 					</div>
 				</div>
@@ -171,7 +171,7 @@
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
-                            <?php  include('include/footer.php'); ?>
+                            <?php  include('includes/footer.php'); ?>
                         </div>
 	</body>
 </html>

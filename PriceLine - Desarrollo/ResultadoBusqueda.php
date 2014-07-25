@@ -6,18 +6,17 @@
 -->
 <html>
 	<head>
-		<title>Verti by HTML5 UP</title>
+		<title>PriceLine</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,800" rel="stylesheet" type="text/css" />
-                <!--<link href="css/wizard.css" rel="stylesheet" type="text/css" />-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<noscript>
-			<link rel="stylesheet" href="css/skel-noscript.css" />                        
+			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/app.css">
@@ -34,7 +33,8 @@
 						<div class="12u">
 						
 							<!-- Header -->
-								<?php include('include/header.php'); ?>
+								<?php include('includes/header.php'); ?>
+
 						</div>
 					</div>
 				</div>
@@ -177,7 +177,7 @@
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
-                               <?php include('include/footer.php'); ?>
+				<?php include('includes/footer.php'); ?>
 			</div>
 	<script src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.7?1343675510"></script>
 	<script src="js/libs.min.js"></script>

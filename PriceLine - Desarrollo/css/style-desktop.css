@@ -91,7 +91,91 @@
 				margin-right: 0.5em;
 				top: 0.05em;
 			}
-	
+			
+	.buttonLog
+	{
+		font-size: 1.35em;
+		padding: 0.8em 1.5em 0.8em 1.5em;
+	}
+
+		.buttonLog.big
+		{
+			font-size: 2.25em;
+			padding: 0.8em 0.9em 0.8em 0.9em;
+		}
+		
+		.buttonLog.small
+		{
+			font-size: 1em;
+			padding: 0.8em 7em 0.8em 0.9em;
+		}
+
+		.buttonLog.fa
+		{
+		}
+
+			.buttonLog.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
+
+	.buttonReg
+	{
+		font-size: 1.35em;
+		padding: 0.8em 1.5em 0.8em 1.5em;
+	}
+
+		.buttonReg.big
+		{
+			font-size: 2.25em;
+			padding: 0.8em 7em 0.8em 0.9em;
+		}
+		
+		.buttonReg.small
+		{
+			font-size: 1em;
+			padding: 0.8em 0.9em 0.8em 0.9em;
+		}
+
+		.buttonReg.fa
+		{
+		}
+
+			.buttonReg.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
+			
+	.buttonMap
+	{
+		font-size: 1.35em;
+		padding: 0.8em 1.5em 0.8em 1.5em;
+	}
+
+		.buttonMap.big
+		{
+			font-size: 2.25em;
+			padding: 0.8em 7em 0.8em 0.9em;
+		}
+		
+		.buttonMap.small
+		{
+			font-size: 1em;
+			padding: 0.8em 2em 0.8em 0.9em;
+		}
+
+		.buttonMap.fa
+		{
+		}
+
+			.buttonMap.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
+			
 	.box
 	{
 		padding: 2em;
@@ -293,8 +377,65 @@
 				top: 50%;
 				margin-top: -0.5em;
 			}
+			
+		#banner .buttonLog
+		{
+			width: 30%;
+			margin-bottom: 0.5em;
+		}
+		
+			#banner .buttonLog.fa:before
+			{
+				position: absolute;
+				right: 0.15em;
+				top: 50%;
+				margin-top: -0.5em;
+			}
+			
+		#banner .buttonReg
+		{
+			width: 65%;
+			margin-bottom: 0.5em;
+		}
+		
+			#banner .buttonReg.fa:before
+			{
+				position: absolute;
+				right: 0.15em;
+				top: 50%;
+				margin-top: -0.5em;
+			}
+			
+		#banner .buttonMap
+		{
+			width: 70%;
+			margin-bottom: 0.5em;
+		}
+		
+			#banner .buttonMap.fa:before
+			{
+				position: absolute;
+				right: 0.15em;
+				top: 50%;
+				margin-top: -0.5em;
+			}
 
 		#banner .button.alt
+		{
+			margin-bottom: 0;
+		}
+		
+		#banner .buttonLog.alt
+		{
+			margin-bottom: 0;
+		}
+		
+		#banner .buttonReg.alt
+		{
+			margin-bottom: 0;
+		}
+		
+		#banner .buttonMap.alt
 		{
 			margin-bottom: 0;
 		}
@@ -335,3 +476,19 @@
 		padding: 4em 0 0 0;
 		text-align: center;
 	}
+	
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+
+	#gmap-4 p
+	{
+		margin-top: 0;
+		font-size: 1em;
+	}
+	
+	#gmap-4 h2
+		{
+			font-size: 1.2em;
+			margin: 0.1em 0 0.35em 0;
+		}

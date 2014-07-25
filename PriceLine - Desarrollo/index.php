@@ -57,7 +57,7 @@
 											<div class="5u">
 												<ul>
 													<li><a href="BuscadorProducto.php" class="button big fa fa-arrow-circle-right">Buscar Precio</a></li>
-													<li><a href="#" class="button alt big fa fa-question-circle">Mas Info</a></li>
+													<li><a href="Registrar.php" class="button alt big fa fa-save">Registrate</a></li>
 												</ul>
 											</div>
 										</div>
