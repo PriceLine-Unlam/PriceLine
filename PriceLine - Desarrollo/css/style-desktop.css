@@ -341,7 +341,28 @@
 					background: #FF8000;
 					color: #fff;
 				}
+                        #nav ul li.current_page_salir
+			{
+                            padding-left: 0px;
+                            position:relative;
+                            top:-25px;
+                            left:-37px;
+                            
+			}
 
+				#nav ul li.current_page_salir a
+				{
+					//background: #FF0D00;
+					//color: #FF0D00;
+                                        padding-left: 2px;
+                                        font-size: 12px;
+                                        padding-bottom: 0px;
+                                        font-weight: normal;
+                                        text-decoration : #696969 solid underline; 
+				}
+
+                                
+                                
 /*********************************************************************************/
 /* Banner                                                                        */
 /*********************************************************************************/

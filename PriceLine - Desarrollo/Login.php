@@ -4,6 +4,7 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+
 <html>
 	<head>
 		<title>PriceLine</title>
@@ -15,11 +16,20 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+                <script src="js/jqModal.min.js"></script> 
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
+                <script>
+                    $(function(){
+                        $('#answerbox1').jqm();
+                             
+                    });
+                    
+                </script>
+                
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -51,10 +61,10 @@
 									<div class="row half">
 										<div class="6u">
 											<h2 align="center">Login</h2><br>
-											<input type="text" class="textLog" name="name" placeholder="Usuario" /><br>
-											<input type="text" class="textLog" name="email" placeholder="Password" /><br>
+											<input type="text" class="textLog" id="email" name="email" placeholder="Usuario" /><br>
+											<input type="text" class="textLog" id="password" name="password" placeholder="Password" /><br>
 											<ul align="center">
-												<li><a href="#" class="buttonLog small fa fa-arrow-circle-right">Ingresar</a></li>
+                                                                                            <li><a href="" onclick="return ingreso();" class="buttonLog small fa fa-arrow-circle-right">Ingresar</a></li>
 											</ul>
 										</div>
 										<div class="6u">
@@ -62,7 +72,7 @@
 											<p align="center">Es facíl<br>
 											Haciendo click aquí</p><br>
 											<ul align="center">
-												<li><a href="Registrar.html" class="buttonReg big fa fa-save">Registrar</a></li>
+												<li><a href="Registrar.php" class="buttonReg big fa fa-save">Registrar</a></li>
 											</ul>
 										</div>
 									</div>
@@ -73,12 +83,47 @@
 					</div>
 				</div>
 			</div>
-		
+                            <div class="answerbox jqmWindow home-answer" id="answerbox1">
+                            <div class="titlesection">
+                                <div class="subplace">
+                                <h2>Error</h2>
+                                 <div class="clear"></div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+                            <div class="mensajewindowbox" id="error">El usuario y/o contraseña son incorrectos.</div>
+                            <a href="javascript:" id="editado" class="yep aselection jqmClose">Ok</a>
+                            </div> 
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
 				<?php include('includes/footer.php'); ?>
 			</div>
+                <script>
+                    function ingreso(){
+                        var email = $('#email').val();
+                        var password = $('#password').val();
+                        
+                         $.post("ingreso.php",{ accion : 'ingreso' , email : email , password : password   } , function(data){
+                                  //if(data !=""){
+                                        eval(data);
+                                    //}
+                           });
+                        return false;
+                    }
+                    <?php
+                       if(isset($_GET['error'])){
+                    ?>
+                        $().ready(function(){
 
+                                   // alert(1);
+                                 $('#answerbox1').jqmShow();
+                        
+                      });
+                    <?php
+                      }
+                    ?>
+                </script>
 	</body>
 </html>

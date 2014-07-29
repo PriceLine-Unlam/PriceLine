@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header"><?php session_start(); ?>
 								
 									<!-- Logo -->
 										<div class="3u">
@@ -9,11 +9,16 @@
 									<!-- Nav -->
 										<nav id="nav">
 											<ul>
-												<li><a href="index.html">Home</a></li>
-												<li><a href="Supermercado.html">Supermercado</a></li>
-												<li><a href="Presupuesto.html">Presupuesto</a></li>
-												<li><a href="BuscadorProducto.html">Productos</a></li>
-												<li class="current_page_item"><a href="Login.html">Login</a></li>
+												<li><a href="index.php">Home</a></li>
+												<li><a href="Supermercado.php">Supermercado</a></li>
+												<li><a href="Presupuesto.php">Presupuesto</a></li>
+												<li><a href="BuscadorProducto.php">Productos</a></li>
+                                                                                                <?php if(!isset($_SESSION['usuario_nombre'])){ ?>
+                                                                                                    <li class="current_page_item"><a href="Login.php">Login</a></li>
+                                                                                                <?php }else{?>
+                                                                                                    <li class="current_page_item"><a href="Login.php"><?php echo $_SESSION['usuario_nombre'];?></a></li>
+                                                                                                    <li class="current_page_salir" title="salir" ><a href="Login.php">[Salir]</a></li>
+                                                                                                <?php }?>    
 											</ul>
 										</nav>
 								
