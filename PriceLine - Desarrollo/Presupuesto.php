@@ -4,6 +4,11 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php 
+
+include('includes/presupuesto.php');
+
+?>
 <html>
 	<head>
 		<title>PriceLine</title>
@@ -43,7 +48,13 @@
 		<!-- Banner Wrapper -->
 			<div id="banner-wrapper">
 				<div class="container">
-					<div class="row">
+                                    <ul >
+                                        <li><a href="" onclick="" class="buttonReg small fa fa-plus-circle">Agregar Presupuesto</a></li>
+                                        <li><a href="" onclick="" style=" position: relative;top:-61px;left:250px;"class="buttonReg small fa fa-minus-circle">Borrar Presupuesto</a></li>
+				    </ul>
+                                    
+                            <?php foreach($datos as $presupuesto){  ?>
+                                    <div class="row">
 						<div class="12u">
 						
 							<!-- Banner -->
@@ -55,10 +66,10 @@
 											</div>
 											<div class="7u">
 												<div class="row">
-													<p><b>Presupuesto Uno</b>
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
+                                                                                                    <p><b>Presupuesto : <?php echo $presupuesto[0]['TituloLista'] ?></b><br>
+													Supermercado : <?php echo $presupuesto[0]['Nombre'] ?><br>
+                                                                                                        <a href="Detalle.php?id=<?php echo $presupuesto[0]['idLista'] ?>">Detalle</a><br>
+													Costo : <?php echo '$ '. $presupuesto[0]['COSTO'] ?></p>
 												</div>
 											</div>
 										</div>
@@ -67,102 +78,8 @@
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta2.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Dos
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta3.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Tres
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta4.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Cuatro
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta5.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Cinco
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
+                            <?php } ?>
+				
 				</div>
 			</div>
 			

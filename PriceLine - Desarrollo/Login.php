@@ -65,6 +65,7 @@
 											<input type="text" class="textLog" id="password" name="password" placeholder="Password" /><br>
 											<ul align="center">
                                                                                             <li><a href="" onclick="return ingreso();" class="buttonLog small fa fa-arrow-circle-right">Ingresar</a></li>
+                                                                                            <li><a href="" onclick="" >Recuperar Contraseña</a> </li>
 											</ul>
 										</div>
 										<div class="6u">

@@ -18,11 +18,14 @@ if($_POST['accion'] == 'ingreso'){
         echo "window.location.href = 'Login.php?error=user_incorrect'";
     }else{
         
-
+        $query = "EXEC getListas '".$usuario[0]['Email']."'";
+        $datos  = $sql->fetchArray($query);
+        
         $_SESSION['usuario_nombre'] = $usuario[0]['Nombre']." ".$usuario[0]['Apellido'];
         $_SESSION['usuario_email'] = $usuario[0]['Email'];
         $_SESSION['usuario_lat'] = $usuario[0]['Latitud'];
         $_SESSION['usuario_lon'] = $usuario[0]['Longitud'];
+        $_SESSION['listas'] = $datos[0]['lista'];
         
         echo "window.location.href = 'index.php'";
         //header("Location: index.php");  
