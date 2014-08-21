@@ -16,7 +16,9 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
-                <script src="js/jqModal.min.js"></script> 
+                <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/alertify.default.css"/>
+                <link rel="stylesheet" href="css/alertify.core.css"/>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -24,7 +26,7 @@
 		</noscript>
                 <script>
                     $(function(){
-                        $('#answerbox1').jqm();
+                       // $('#answerbox1').jqm();
                              
                     });
                     

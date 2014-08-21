@@ -20,12 +20,27 @@ include('includes/presupuesto.php');
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+                <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/alertify.default.css"/>
+                <link rel="stylesheet" href="css/alertify.core.css"/>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/app.css">
+                        
 		</noscript>
+                
+                <script type="text/javascript">
+                    function verInfo(nombre,direccion,horario){
+                        
+                        alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion+"<br> Horario: "+ horario +"", function () {
+                                    
+                                    
+                              });
+                              $('.alertify-dialog').css('height','250px');
+                    }
+                </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -35,7 +50,7 @@ include('includes/presupuesto.php');
 			<div id="header-wrapper">
 				<div class="container">
 					<div class="row">
-						<div class="12u">
+						<div  class="12u">
 						
 							<!-- Header -->
 								<?php include('includes/header.php');?>
@@ -67,8 +82,8 @@ include('includes/presupuesto.php');
 											<div class="7u">
 												<div class="row">
                                                                                                     <p><b>Presupuesto : <?php echo $presupuesto[0]['TituloLista'] ?></b><br>
-													Supermercado : <?php echo $presupuesto[0]['Nombre'] ?><br>
-                                                                                                        <a href="Detalle.php?id=<?php echo $presupuesto[0]['idLista'] ?>">Detalle</a><br>
+                                                                                                        Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $presupuesto[0]['Nombre'] ?>','<?php echo $presupuesto[0]['Direccion'] ?>','<?php echo $presupuesto[0]['Horario'] ?>');"> <?php echo $presupuesto[0]['Nombre'] ?></span><br>
+                                                                                                        <a href="DetallePresupuesto.php?id=<?php echo $presupuesto[0]['idLista'] ?>">Detalle</a><br>
 													Costo : <?php echo '$ '. $presupuesto[0]['COSTO'] ?></p>
 												</div>
 											</div>

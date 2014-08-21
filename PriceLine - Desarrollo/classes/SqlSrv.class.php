@@ -167,7 +167,22 @@ class SqlSrv
         while ($res = sqlsrv_fetch_array($stmt, $type)) {
             $a_array[] = $res;
         }
-
+        
+        return $a_array;
+    }
+    //Probar si funciona
+    public function fetchArrayMultiple($query = null, $type = SQLSRV_FETCH_ASSOC){
+        
+        //$stmt = $this->query($query);
+        $stmt = sqlsrv_query($this->connection,$query);
+        $a_array = array();
+        $i=0;
+        do{
+            while ($res = sqlsrv_fetch_array($stmt, $type)) {
+                $a_array[$i][] = $res;
+            }
+            $i++;
+        } while (sqlsrv_next_result($stmt));
         return $a_array;
     }
 

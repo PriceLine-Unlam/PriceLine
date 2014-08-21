@@ -18,14 +18,7 @@ if(isset($_SESSION['usuario_nombre'])){
         $datos['listas_costo'] = $sql->fetchArray($query);
     }
     
-    //echo "<pre>";
-    //print_r($datos); 
-    //echo "</pre>";
-    //die();
-}
-
-
-/*Array
+    /*Array
 (
     [listas_costo] => Array
         (
@@ -48,3 +41,19 @@ if(isset($_SESSION['usuario_nombre'])){
 )
  * */
  
+}
+
+//Detalles
+if(isset($_GET['id'])){
+    
+    $query = "EXEC [Presupuesto] '".$_SESSION['usuario_email']."',".$_GET['id'].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'].",1";
+    //print_r($query);
+    $datos = $sql->fetchArrayMultiple($query);
+    
+    //primer array = lista de productos con los precios
+    //segundo array = costo de los productos por supermercado
+    //tercer array = datos productos
+    //cuatro array = datos supermercados
+}
+
+

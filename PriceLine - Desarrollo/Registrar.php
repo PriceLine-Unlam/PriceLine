@@ -12,7 +12,9 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
-                <script src="js/jqModal.min.js"></script>
+                <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/alertify.default.css"/>
+                <link rel="stylesheet" href="css/alertify.core.css"/>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -25,8 +27,8 @@
                                $('#Provincia').html(data);
                        });
                         
-                        $('#answerbox').jqm();
-                        $('#answerbox1').jqm();
+                       // $('#answerbox').jqm();
+                       // $('#answerbox1').jqm();
                         
                         
                         $('#crear').click(function(){
@@ -158,33 +160,7 @@
 			<div id="footer-wrapper">
 				<?php include('includes/footer.php'); ?>
 			</div>
-                
-    <div class="answerbox jqmWindow home-answer" id="answerbox">
-    <div class="titlesection">
-        <div class="subplace">
-        <h2>Registración</h2>
-         <div class="clear"></div>
-        </div>
-    </div>
-
-    <div class="clear"></div>
-    <div class="mensajewindowbox">Se ha registrado correctamente!</div>
-    <a href="javascript:" id="crear" class="yep aselection jqmClose">Ok</a>
-    </div>
-                
-    <div class="answerbox jqmWindow home-answer" id="answerbox1">
-    <div class="titlesection">
-        <div class="subplace">
-        <h2>Error</h2>
-         <div class="clear"></div>
-        </div>
-    </div>
-
-    <div class="clear"></div>
-    <div class="mensajewindowbox" id="error"></div>
-    <a href="javascript:" id="editado" class="yep aselection jqmClose">Ok</a>
-    </div>            
-                
+                    
                 <script>
                     function localidadSelect(){
                         
@@ -251,19 +227,9 @@
                        // password = Base64.encode(password);
                        // alert(password);
                         if(error != ''){
-                           
-                           /* $( '#dialog-message' ).dialog({
-                            modal: true,
-                            buttons: {
-                            Ok: function() {
-                                    $( this ).dialog( "close" );
-                                }}
-                            }).css('width','500px');
-                            $('.ui-dialog').css('width','500px');*/
-                            $('#error').empty();
-                            $('#error').append(error);
-                            $('#answerbox1').jqmShow();
-                            
+                            alertify.alert("<u>Registración</u></br>La registracion tiene los siguientes errores : <br>" + error, function () {    
+                              });
+                               $('.alertify-dialog').css('height','550px');
                         }else{
                             
                             $.post("includes/acciones.php",{ accion : 'registrar' , nombre : nombre, apellido : apellido

@@ -55,9 +55,9 @@ if($_POST['accion'] == 'registrar'){
         }catch(Exception $e){
              echo "alert('". $e->getMessage()."')";
         }
-        echo "$('#answerbox').jqmShow();";
+        echo 'alertify.alert("<u>Registración</u></br> El usuario se ha creado con exito!!", function () {  });$(".alertify-dialog").css("height","200px");';
     }else{
-        echo "$('#error').empty(); $('#error').append('Usuario ya existente. Intente Recuperar la contraseña.'); $('#answerbox1').jqmShow();";
+        echo 'alertify.alert("<u>Registración</u></br> El usuario ya existe, intente recuperar la contraseña si no la recuerda..", function () {  });$(".alertify-dialog").css("height","250px");';
     }
 }
     
