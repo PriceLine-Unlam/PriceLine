@@ -86,18 +86,7 @@
 					</div>
 				</div>
 			</div>
-                            <div class="answerbox jqmWindow home-answer" id="answerbox1">
-                            <div class="titlesection">
-                                <div class="subplace">
-                                <h2>Error</h2>
-                                 <div class="clear"></div>
-                                </div>
-                            </div>
-
-                            <div class="clear"></div>
-                            <div class="mensajewindowbox" id="error">El usuario y/o contraseña son incorrectos.</div>
-                            <a href="javascript:" id="editado" class="yep aselection jqmClose">Ok</a>
-                            </div> 
+                           
 
 		<!-- Footer Wrapper -->
 			<div id="footer-wrapper">
@@ -120,8 +109,8 @@
                     ?>
                         $().ready(function(){
 
-                                   // alert(1);
-                                 $('#answerbox1').jqmShow();
+                                 alertify.alert("<u>Login</u></br> El usuario y/o la contraseña incorrectas!", function () {  })
+                                 ;$(".alertify-dialog").css("height","200px");
                         
                       });
                     <?php

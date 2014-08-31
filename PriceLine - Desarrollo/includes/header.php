@@ -1,4 +1,5 @@
-<header id="header"><?php session_start(); ?>
+<?php session_start(); ?>
+<header id="header">
 								
 									<!-- Logo -->
 										<div class="3u">
@@ -17,7 +18,7 @@
                                                                                                     <li class="current_page_item"><a href="Login.php">Login</a></li>
                                                                                                 <?php }else{?>
                                                                                                     <li class="current_page_item"><a href="Login.php"><?php echo $_SESSION['usuario_nombre'];?></a></li>
-                                                                                                    <li class="current_page_salir" title="salir" ><a href="Login.php">[Salir]</a></li>
+                                                                                                    <li class="current_page_salir" title="salir" ><a href="index.php?login=loginout">[Salir]</a></li>
                                                                                                 <?php }?>    
 											</ul>
 										</nav>

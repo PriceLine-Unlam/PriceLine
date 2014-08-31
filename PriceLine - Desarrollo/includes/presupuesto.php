@@ -1,59 +1,96 @@
 <?php
 session_start();
-include('classes/SqlSrv.class.php');
+
+if(isset($_POST['accion'])){
+    include('../classes/SqlSrv.class.php');
+}else{
+    include('classes/SqlSrv.class.php');
+}
+
+
 $sql = new SqlSrv();
-
-
-if(isset($_SESSION['usuario_nombre'])){
+if($bandeja == 'usuario_login'){
     
-    $lista = $_SESSION['listas'];
-    $listas = explode('|', $lista);
-    
-
-    for($i=0;$i<count($listas);$i++){
-        $query = "EXEC [SPPresupuestoMenor] '".$_SESSION['usuario_email']."',".$listas[$i].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'];
-      // print_r($query);
-       
+    //$lista = $_SESSION['listas'];
+    $query = "EXEC getListas '".$_SESSION['usuario_email']."'";
+    $dato = $sql->fetchArray($query);
+    //print_r($dato);die();
+    $listas = explode('|', $dato[0]['lista']);
+    //print_r($listas); die();
+ 
+    $datos[] = '';
+    if(count($listas) > 1){
+        //echo "1"; die();
+        for($i=0;$i<count($listas);$i++){
+            $query = "EXEC [SPPresupuestoMenor] '".$_SESSION['usuario_email']."',".$listas[$i].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'];
+           
+            $datos[] = $sql->fetchArrayMultiple($query);
+        }
+    }else if(count($listas) == 1 && $listas[0] != '' ){
         
-        $datos['listas_costo'] = $sql->fetchArray($query);
+        $query = "EXEC [SPPresupuestoMenor] '".$_SESSION['usuario_email']."',".$listas[0].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'];
+        $datos = $sql->fetchArrayMultiple($query);
     }
     
-    /*Array
-(
-    [listas_costo] => Array
-        (
-            [0] => Array
-                (
-                    [idLista] => 1
-                    [TituloLista] => Prueba
-                    [COSTO] => 25.95
-                    [idSupermercado] => 2
-                    [Nombre] => Carlitos
-                    [Direccion] => Coronel Brandsen 2398, ItuzaingÃ³
-                    [Longitud] => -58.687975
-                    [Latitud] => -34.640976
-                    [Horario] => Lunes a Sabado 9hs. a 22hs.
-                    [Borrado] => 0
-                )
+   //print_r($datos);die();
+}
 
-        )
-
-)
- * */
+if($bandeja == 'sin_usuario' ){
+    
+    $query = "EXEC getListas 'SIN_USUARIO'";
+    $dato = $sql->fetchArray($query);
+    //print_r($dato);die();
+    $listas = explode('|', $dato[0]['lista']);
+    //print_r($listas); die();
  
+    $datos[] = '';
+    if(count($listas) > 1){
+       // print_r('1'); die();
+        for($i=0;$i<count($listas);$i++){
+            $query = "EXEC [SPPresupuestoMenor] 'SIN_USUARIO',".$listas[$i];
+           
+            $datos[] = $sql->fetchArrayMultiple($query);
+        }
+    }else if(count($listas) == 1 && $listas[0] != ''){
+        //print_r('2'); die();
+        $query = "EXEC [SPPresupuestoMenor] 'SIN_USUARIO',".$listas[0];
+        $datos = $sql->fetchArrayMultiple($query);
+    }
 }
 
 //Detalles
 if(isset($_GET['id'])){
     
-    $query = "EXEC [Presupuesto] '".$_SESSION['usuario_email']."',".$_GET['id'].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'].",1";
-    //print_r($query);
-    $datos = $sql->fetchArrayMultiple($query);
-    
-    //primer array = lista de productos con los precios
-    //segundo array = costo de los productos por supermercado
-    //tercer array = datos productos
-    //cuatro array = datos supermercados
+    if(isset($_SESSION['usuario_email'])){
+         $query = "EXEC [Presupuesto] '".$_SESSION['usuario_email']."',".$_GET['id'].",".$_SESSION['usuario_lat'].",".$_SESSION['usuario_lon'].",1";
+         $datos = $sql->fetchArrayMultiple($query);
+    }else{
+        $query = "EXEC [Presupuesto] 'SIN_USUARIO',".$_GET['id'];
+         $datos = $sql->fetchArrayMultiple($query);
+    }
+   
 }
 
+if($_POST['accion'] == 'borrarLista'){
+    
+    
+    $query = "EXEC SPBorrarLista ".$_POST['id'];
+    $sql->fetchArray($query);
+
+   // $_SESSION['listas'] = str_replace($_POST['id'],'',$_SESSION['listas']);
+    
+    echo 'alertify.alert("Se a borrado el presupuesto correctamente! ", function () { window.location.reload();  });';
+}
+
+if($_POST['accion'] == 'agregarLista'){
+    
+    $nombre = $_POST['nombre'];
+    $productos = $_POST['productos'];
+    
+    
+    $query = "EXEC SPagregarPresupuestos '".$_SESSION['usuario_email']."','".$productos."','".$nombre."'";
+    $sql->fetchArray($query);
+    
+    echo 'alertify.alert("Se agregado el presupuesto correctamente! ", function () { window.location.reload();  });';
+}
 

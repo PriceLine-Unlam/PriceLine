@@ -53,7 +53,11 @@
 		color: #444;
 		font-weight: 800;
 	}
-	
+        .parrafo_presupuesto{
+            color: #444;
+	    font-weight: 800;
+            font-size: 20px;
+        }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
 	{
 		color: inherit;
@@ -448,6 +452,26 @@
 			font-size: 14pt;
 			line-height: 1.75em;
 		}
+        .half textarea.textReg
+		{
+			border: 0;
+			background: #f0f0f0;
+			padding: 0.65em;
+			width: 100%;
+			height: 100%;
+			font-size: 14pt;
+			line-height: 1.75em;
+		}
+         .half div.textReg
+		{
+			border: 0;
+			background: #f0f0f0;
+			padding: 0.65em;
+			width: 100%;
+			height: 100%;
+			font-size: 14pt;
+			line-height: 1.75em;
+		}       
         .half select.textSel
 		{
 			border: 0;

@@ -18,12 +18,27 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+                <script src="js/jquery.dataTables.js"></script>
+                <link rel="stylesheet" href="css/jquery.dataTables.css" />
+                <link rel="stylesheet" href="css/jquery.dataTables_themeroller.css" />
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/app.css">
 		</noscript>
+                <script>
+                    $(document).ready(function(){
+                        
+                        $('#DataTables_Table_0').dataTable( {
+                                "paging":   false,
+                                "ordering": false,
+                                "info":     false,
+                                "bFilter" : false,
+                                "bSort" : false
+                            } );
+                    });
+                </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -54,111 +69,42 @@
 									<div>
 										<div class="row">
 											<div class="5u">
-												<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>
+												<!--<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>-->
+                                                                                            <h2>Detalle</h2>
 											</div>
-											<div class="7u">
-												<div class="row">
-													<p><b>Presupuesto Uno</b>
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta2.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Dos
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta3.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Tres
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta4.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Cuatro
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
-									<div>
-										<div class="row">
-											<div class="5u">
-												<a href="#" class="image image-canasta"><img src="images/canasta5.jpg" alt="" /></a>
-											</div>
-											<div class="7u">
-												<div class="row">
-													<p>Presupuesto Cinco
-													Supermercado<br>
-													Detalle Productos<br>
-													Precio</p>
-												</div>
+											<div class="8u">
+                                                                                            <table id="DataTables_Table_0" style="width:163%">
+                                                                                                    <thead>
+                                                                                                        <tr role="row">
+                                                                                                            <th>Producto</th>
+                                                                                                            <th> <?php echo $datos[3][0]['Nombre'] ?></th>
+                                                                                                            <th> <?php echo $datos[3][1]['Nombre'] ?></th>
+                                                                                                            <th> <?php echo $datos[3][2]['Nombre'] ?></th>
+                                                                                                            <th> <?php echo $datos[3][3]['Nombre'] ?></th>
+                                                                                                            <th> <?php echo $datos[3][4]['Nombre'] ?></th>
+                                                                                                        </tr>
+                                                                                                    </thead>
+                                                                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                                                                        <?php for($i=0;$i<count($datos[0]);$i++){ ?>
+                                                                                                            <tr class="odd">
+                                                                                                                <td><?php echo $datos[2][$i]['Nombre'] ?></td>
+                                                                                                                <td>$ <?php echo $datos[0][$i]['Supermercado1'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado2'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado3'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado4'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado5'] ?></td>
+                                                                                                            </tr>
+                                                                                                        <?php } ?>
+                                                                                                            <tr class="odd">
+                                                                                                                <td >Total: </td>
+                                                                                                                <td>$ <?php echo $datos[1][0]['CostoTotal1'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal2'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal3'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal4'] ?></td>
+                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal5'] ?></td>
+                                                                                                            </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
 											</div>
 										</div>
 									</div>

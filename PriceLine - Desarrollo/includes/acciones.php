@@ -60,6 +60,6 @@ if($_POST['accion'] == 'registrar'){
         echo 'alertify.alert("<u>Registración</u></br> El usuario ya existe, intente recuperar la contraseña si no la recuerda..", function () {  });$(".alertify-dialog").css("height","250px");';
     }
 }
-    
+
 
 

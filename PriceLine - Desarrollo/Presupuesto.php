@@ -5,7 +5,12 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <?php 
-
+session_start();
+$bandeja = 'sin_usuario';
+if(isset($_SESSION['usuario_nombre'])){
+    
+    $bandeja = 'usuario_login';
+}
 include('includes/presupuesto.php');
 
 ?>
@@ -32,6 +37,7 @@ include('includes/presupuesto.php');
 		</noscript>
                 
                 <script type="text/javascript">
+                    
                     function verInfo(nombre,direccion,horario){
                         
                         alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion+"<br> Horario: "+ horario +"", function () {
@@ -39,6 +45,19 @@ include('includes/presupuesto.php');
                                     
                               });
                               $('.alertify-dialog').css('height','250px');
+                    }
+                    function borrarPresupuesto(id){
+                         alertify.confirm("<p>Esta seguro que quiere borrar el presupuesto?</p>", function (e) {
+                                if (e) {
+                                       $.post("includes/presupuesto.php",{ accion : 'borrarLista' , id : id  } , function(data){
+                                  //if(data !=""){
+                                        eval(data);
+                                    //}
+                                     });
+                                    return false;
+                                } 
+                            });
+                             return false;
                     }
                 </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
@@ -64,11 +83,16 @@ include('includes/presupuesto.php');
 			<div id="banner-wrapper">
 				<div class="container">
                                     <ul >
-                                        <li><a href="" onclick="" class="buttonReg small fa fa-plus-circle">Agregar Presupuesto</a></li>
-                                        <li><a href="" onclick="" style=" position: relative;top:-61px;left:250px;"class="buttonReg small fa fa-minus-circle">Borrar Presupuesto</a></li>
+                                        <?php if(isset($_SESSION['usuario_nombre'])){ ?>
+                                        <li><a href="agregarPresupuesto.php" onclick=""  class="buttonReg small fa fa-plus-circle">Agregar Presupuesto</a></li>
+                                        <?php }else{ ?>
+                                        <li><p class="parrafo_presupuesto">Para presupuestos personalizados debe <a href="Login.php">ingresar/registrarse</a>.</p></li>
+                                        <?php }?>
+                                        <!--<li><a href="" onclick="borrarPresupuesto();" style=" position: relative;top:-61px;left:250px;"class="buttonReg small fa fa-minus-circle">Borrar Presupuesto</a></li>-->
 				    </ul>
                                     
-                            <?php foreach($datos as $presupuesto){  ?>
+                       <?php if(count($datos) > 1){ 
+                                foreach($datos as $presupuesto){ ?>
                                     <div class="row">
 						<div class="12u">
 						
@@ -81,20 +105,48 @@ include('includes/presupuesto.php');
 											</div>
 											<div class="7u">
 												<div class="row">
-                                                                                                    <p><b>Presupuesto : <?php echo $presupuesto[0]['TituloLista'] ?></b><br>
-                                                                                                        Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $presupuesto[0]['Nombre'] ?>','<?php echo $presupuesto[0]['Direccion'] ?>','<?php echo $presupuesto[0]['Horario'] ?>');"> <?php echo $presupuesto[0]['Nombre'] ?></span><br>
-                                                                                                        <a href="DetallePresupuesto.php?id=<?php echo $presupuesto[0]['idLista'] ?>">Detalle</a><br>
-													Costo : <?php echo '$ '. $presupuesto[0]['COSTO'] ?></p>
+                                                                                                    <p><b><u><?php echo $presupuesto[0][0]['TituloLista'] ?></u></b><br>
+                                                                                                        Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $presupuesto[0][0]['Nombre'] ?>','<?php echo $presupuesto[0][0]['Direccion'] ?>','<?php echo $presupuesto[0][0]['Horario'] ?>');"> <?php echo $presupuesto[0][0]['Nombre'] ?></span><br>
+                                                                                                        <a href="DetallePresupuesto.php?id=<?php echo $presupuesto[0][0]['idLista'] ?>">Detalle</a><br>
+													Costo : <?php echo '$ '. $presupuesto[0][0]['COSTO'] ?></p>
 												</div>
 											</div>
+                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position: relative; top: 55px; left: 563px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
 										</div>
 									</div>
 								</div>
 
 						</div>
-					</div>
+				    </div>
+                            <?php } }else if(count($datos) == 1 && $datos[0] != ''){?>
+                                    <div class="row">
+						<div class="12u">
+						
+							<!-- Banner -->
+								<div id="banner" class="box">
+									<div>
+										<div class="row">
+											<div class="5u">
+												<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>
+											</div>
+											<div class="7u">
+												<div class="row">
+                                                                                                    <p><b><u><?php echo $datos[0][0]['TituloLista'] ?></u></b><br>
+                                                                                                        Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $datos[0][0]['Nombre'] ?>','<?php echo $datos[0][0]['Direccion'] ?>','<?php echo $datos[0][0]['Horario'] ?>');"> <?php echo $datos[0][0]['Nombre'] ?></span><br>
+                                                                                                        <a href="DetallePresupuesto.php?id=<?php echo $datos[0][0]['idLista'] ?>">Detalle</a><br>
+													Costo : <?php echo '$ '. $datos[0][0]['COSTO'] ?></p>
+												</div>
+											</div>
+                                                                                    <?php if(isset($_SESSION['usuario_email'])) {?>
+                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $datos[0][0]['idLista'] ?>);" style="position: relative; top: 55px; left: 563px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                    <?php } ?>
+										</div>
+									</div>
+								</div>
+
+						</div>
+				    </div>
                             <?php } ?>
-				
 				</div>
 			</div>
 			
