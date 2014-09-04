@@ -86,9 +86,9 @@ if($_POST['accion'] == 'agregarLista'){
     
     $nombre = $_POST['nombre'];
     $productos = $_POST['productos'];
+    $importancia = $_POST['importancia'];
     
-    
-    $query = "EXEC SPagregarPresupuestos '".$_SESSION['usuario_email']."','".$productos."','".$nombre."'";
+    $query = "EXEC SPagregarPresupuestos '".$_SESSION['usuario_email']."','".$productos."','".$importancia."','".$nombre."'";
     $sql->fetchArray($query);
     
     echo 'alertify.alert("Se agregado el presupuesto correctamente! ", function () { window.location.reload();  });';

@@ -111,7 +111,10 @@ include('includes/presupuesto.php');
 													Costo : <?php echo '$ '. $presupuesto[0][0]['COSTO'] ?></p>
 												</div>
 											</div>
-                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position: relative; top: 55px; left: 563px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                    <?php if(isset($_SESSION['usuario_email'])) {?>
+                                                                                        <a href="modificarPresupuesto.php?id=<?php echo $presupuesto[0][0]['idLista'] ?>" style="position:relative;top:50px;left:390px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Modificar</a>
+                                                                                        <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position: relative; top: 50px; left: 400px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                    <?php } ?>
 										</div>
 									</div>
 								</div>
@@ -138,7 +141,8 @@ include('includes/presupuesto.php');
 												</div>
 											</div>
                                                                                     <?php if(isset($_SESSION['usuario_email'])) {?>
-                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $datos[0][0]['idLista'] ?>);" style="position: relative; top: 55px; left: 563px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                    <a href="modificarPresupuesto.php?id=<?php echo $datos[0][0]['idLista'] ?>" style="position:relative;top:50px;left:390px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-pencil">Modificar</a>
+                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $datos[0][0]['idLista'] ?>);" style="position:relative;top:50px;left:400px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
                                                                                     <?php } ?>
 										</div>
 									</div>
