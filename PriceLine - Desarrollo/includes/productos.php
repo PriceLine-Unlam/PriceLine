@@ -3,7 +3,7 @@
 include('../classes/SqlSrv.class.php');
 
 $sql = new SqlSrv();
-$productos = $sql->fetchArray("SELECT DISTINCT (Nombre +' - '+ Marca) Nombre from Producto where Nombre +' '+ Marca like '%".$_REQUEST['term']."%' "); //devuelve un array
+$productos = $sql->fetchArray("SELECT DISTINCT (Nombre +' - '+ Marca + '  ' + Cantidad) Nombre from Producto where Nombre +' '+ Marca like '%".$_REQUEST['term']."%' "); //devuelve un array
 
 $lista_prod = '[';
 

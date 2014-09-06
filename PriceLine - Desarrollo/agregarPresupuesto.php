@@ -70,7 +70,7 @@
                                 for(i=0;i<(idProductos.length-1);i++){
                                    // alert('#imp'+idProductos[i]);
                                      var imp = $('#imp'+idProductos[i]).val();
-                                    importancia += "|"+imp;
+                                     importancia += imp + "|";
                                 }
                                 
                                 //alert(importancia);

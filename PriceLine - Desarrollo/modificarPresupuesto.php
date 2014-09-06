@@ -5,8 +5,22 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <?php
+    
+    
     session_start();
     include('includes/init.php');
+    include('includes/presupuesto.php');
+    
+    function valueSelect($value,$select){
+        
+        if($value == $select){
+            return "selected";
+        }
+        return '';
+    }
+    
+    
+    //print_r($datos); die();
 
 ?>
 <html>
@@ -70,12 +84,12 @@
                                 for(i=0;i<(idProductos.length-1);i++){
                                    // alert('#imp'+idProductos[i]);
                                      var imp = $('#imp'+idProductos[i]).val();
-                                    importancia += "|"+imp;
+                                    importancia += imp + "|";
                                 }
                                 
                                 //alert(importancia);
                                 
-                                 $.post("includes/presupuesto.php",{ accion : 'agregarLista' , nombre : nombre, productos : productos, importancia : importancia} , function(data){
+                                 $.post("includes/presupuesto.php",{ accion : 'modificarLista' , nombre : nombre, productos : productos, importancia : importancia, idLista : <?php echo $datos[0]['idLista'] ?>} , function(data){
                                        eval(data);
                                });
                             }
@@ -155,14 +169,14 @@
 									
 									<div class="row">
 										<div class="12u">
-										<h2 align="center">Nuevo Presupuesto: </h2>
+										<h2 align="center">Editar Presupuesto: </h2>
 										</div>
 									</div>
 									<div class="row half">
 										<div class="1u">
 										</div>
 										<div class="9u">
-                                                                                    <input type="text" class="textReg" id="Nombre" name="Nombre" placeholder="Nombre del Presupuesto"  /><br>
+                                                                                    <input type="text" class="textReg" id="Nombre" name="Nombre" placeholder="Nombre del Presupuesto" value="<?php echo $datos[0]['Titulo'] ?>"  /><br>
 										</div>
 										<div class="1u">
 										</div>
@@ -180,8 +194,16 @@
 										<div class="1u">
 										</div>
 										<div class="9u">
-                                                                                    <div id="lista" class="textReg" ></div>
-                                                                                    <input type="hidden"  id="ListaProducto" name="ListaProducto"   /><br>
+                                                                                    <div id="lista" class="textReg" >
+                                                                                        <?php 
+                                                                                        $lista = '';
+                                                                                        foreach ($datos as $producto){
+                                                                                            $lista .= $producto['idProducto'].'|';
+                                                                                        ?>
+                                                                                             <div style="font-size:16px;height: 30px;" id="list<?php echo $producto['idProducto'] ?>"><?php echo $producto['Nombre'] ?> <div style="position: relative;top:-34px;left:550px;">Importancia: <select id="imp<?php echo $producto['idProducto'] ?>"><option value="1"  <?php echo valueSelect("1",$producto['importancia']); ?> >Alta</option><option value="2" <?php echo valueSelect("2",$producto['importancia']); ?> >Media</option><option value="3" <?php echo valueSelect("3",$producto['importancia']); ?> >Baja</option></select></div><span style="cursor:pointer;position:relative; top:-65px;left:730px;" onclick="borrarProducto('list<?php echo $producto['idProducto'] ?>','<?php echo $producto['idProducto'] ?>');"><img style="width:18px;height:18px;" src="images/cruz_naranja.png"></span></div>
+                                                                                        <?php } ?>
+                                                                                    </div>
+                                                                                    <input type="hidden"  id="ListaProducto" name="ListaProducto"  value="<?php echo $lista; ?>" /><br>
 										</div>
 										<div class="1u">
 										</div>

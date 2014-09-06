@@ -3,7 +3,7 @@
 include('../classes/SqlSrv.class.php');
 
 $sql = new SqlSrv();
-$productos = $sql->fetchArray("SELECT (Nombre +' - '+ Marca) Nombre , idProducto from Producto where (Nombre +' '+ Marca) like '%".$_REQUEST['term']."%' "); //devuelve un array
+$productos = $sql->fetchArray("SELECT (Nombre +' - '+ Marca + '  ' + Cantidad) Nombre , idProducto from Producto where (Nombre +' '+ Marca) like '%".$_REQUEST['term']."%' "); //devuelve un array
 
 $a_json = array();
 $a_json_row = array();
@@ -20,3 +20,4 @@ foreach($productos as $row) {
 $json = json_encode($a_json);
 
 echo $json;
+

@@ -2,9 +2,9 @@
 session_start();
 
 if(isset($_POST['accion'])){
-    include('../classes/SqlSrv.class.php');
+    include_once('../classes/SqlSrv.class.php');
 }else{
-    include('classes/SqlSrv.class.php');
+    include_once('classes/SqlSrv.class.php');
 }
 
 
@@ -93,4 +93,26 @@ if($_POST['accion'] == 'agregarLista'){
     
     echo 'alertify.alert("Se agregado el presupuesto correctamente! ", function () { window.location.reload();  });';
 }
-
+if(isset($_GET['idLista'])){
+    
+    $idLista = $_GET['idLista'];
+    
+    $query = "EXEC detallePresupuestoSP ".$idLista.",'".$_SESSION['usuario_email']."'";
+    
+    $datos = $sql->fetchArray($query);
+}
+if($_POST['accion'] == 'modificarLista'){
+    
+    
+    //print_r($_REQUEST);
+    $nombre = $_POST['nombre'];
+    $productos = $_POST['productos'];
+    $importancia = $_POST['importancia'];
+    $idLista = $_POST['idLista'];
+    
+    $query = "EXEC modificarPresupuesto '".$_SESSION['usuario_email']."','".$productos."','".$importancia."','".$nombre."','".$idLista."'";
+    $sql->fetchArray($query);
+    
+    echo 'alertify.alert("Se ha modificado el presupuesto correctamente! ", function () { window.location.href = "presupuesto.php";  });';    
+    
+}
