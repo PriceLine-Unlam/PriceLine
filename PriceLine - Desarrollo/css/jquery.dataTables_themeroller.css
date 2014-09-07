@@ -50,9 +50,6 @@ table.dataTable thead th.ui-state-default {
 table.dataTable thead th.ui-state-default:last-child {
   border-right-width: 1px;
 }
-table.dataTable tbody tr {
-  background-color: white;
-}
 table.dataTable tbody tr.selected {
   background-color: #b0bed9;
 }

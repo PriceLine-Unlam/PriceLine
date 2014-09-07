@@ -5,6 +5,17 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <?php 
+    function asignacionClass($val){
+        if($val == 3){
+            return "green";
+        }
+        if($val == 2){
+            return "yellow";
+        }
+        if($val == 1){
+            return "red";
+        }
+    }
     include('includes/presupuesto.php');
 ?>
 <html>
@@ -21,6 +32,9 @@
                 <script src="js/jquery.dataTables.js"></script>
                 <link rel="stylesheet" href="css/jquery.dataTables.css" />
                 <link rel="stylesheet" href="css/jquery.dataTables_themeroller.css" />
+                <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/alertify.default.css"/>
+                <link rel="stylesheet" href="css/alertify.core.css"/>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -38,6 +52,10 @@
                                 "bSort" : false
                             } );
                     });
+                    function mostrarDatos(nombre,descripcion,marca,categoria){
+                        alertify.alert("<u>Información del Producto  "+nombre+"</u></br></br>Descripción : "+descripcion+"</br>Marca :"+marca+"</br>Categoria : "+categoria+"</br>",function (){});
+                        $('.alertify-dialog').css('height','300px');
+                    }
                 </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
@@ -86,8 +104,8 @@
                                                                                                     </thead>
                                                                                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
                                                                                                         <?php for($i=0;$i<count($datos[0]);$i++){ ?>
-                                                                                                            <tr class="odd">
-                                                                                                                <td><?php echo $datos[2][$i]['Nombre'] ?></td>
+                                                                                                            <tr class="<?php echo asignacionClass($datos[0][$i]['importancia']); ?>">
+                                                                                                                <td style="cursor : pointer" onclick="mostrarDatos('<?php echo $datos[2][$i]['Nombre']?>','<?php echo $datos[2][$i]['Descripcion']?>','<?php echo $datos[2][$i]['Marca']?>','<?php echo $datos[2][$i]['Categoria']?>');"><?php echo $datos[2][$i]['Nombre'] ?></td>
                                                                                                                 <td>$ <?php echo $datos[0][$i]['Supermercado1'] ?></td>
                                                                                                                 <td >$ <?php echo $datos[0][$i]['Supermercado2'] ?></td>
                                                                                                                 <td >$ <?php echo $datos[0][$i]['Supermercado3'] ?></td>

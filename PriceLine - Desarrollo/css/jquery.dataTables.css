@@ -53,9 +53,7 @@ table.dataTable thead .sorting_asc_disabled {
 table.dataTable thead .sorting_desc_disabled {
   background: url("../images/sort_desc_disabled.png") no-repeat center right;
 }
-table.dataTable tbody tr {
-  background-color: white;
-}
+
 table.dataTable tbody tr.selected {
   background-color: #b0bed9;
 }

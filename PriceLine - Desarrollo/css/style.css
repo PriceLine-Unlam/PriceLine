@@ -1163,91 +1163,26 @@
 }
 
 
-.answerbox{
-	display: none;
-}
 
 /* --------------- */
 
-/* ------ Alerts ------- */
+/* ------ detalle presupuesto ------- */
 
-#answerbox {
-	text-align: left;
-	color: #666666;
+.red{
+    background-color: #fdcbcb;
+    font-weight: bold;
+    font-size: 14px;
+    
+    
 }
-#answerbox h2{
-	display: block;
-	font-size:32px;
+.yellow{
+    background-color: #ffffc4;
+    font-weight: bold;
+    font-size: 14px;
 }
-#answerbox h2 i{
-	font-style: normal;
-	display: block;
-	float: left;
-	padding-left: 10px;
-	padding-top: 12px;
-}
-#answerbox h2 span{
-	background: url(../images/attention.png) no-repeat;
-	width: 76px;
-	height: 76px;
-	display: block;
-	float: left;
-}
-#answerbox .mensajewindowbox{
-	margin-left: 85px;
-	padding-bottom: 20px;
-}
-#answerbox .aselection{
-	color: #fff;
-	display: block;
-	padding:6px 12px;
-	float: right;
-	border-radius: 6px;
-}
-#answerbox .yep{
-	background: #ff8000;
-}
-#answerbox .yep:hover{
-	background: #212121;
-}
+.green{
+    background-color: #c7ffc3;
+    font-weight: bold;
+    font-size: 14px;
 
-#answerbox1 {
-	text-align: left;
-	color: #666666;
-}
-#answerbox1 h2{
-	display: block;
-	font-size:32px;
-        margin-bottom: 5px;
-}
-#answerbox1 h2 i{
-	font-style: normal;
-	display: block;
-	float: left;
-	padding-left: 10px;
-	padding-top: 12px;
-}
-#answerbox1 h2 span{
-	background: url(../images/attention.png) no-repeat;
-	width: 76px;
-	height: 76px;
-	display: block;
-	float: left;
-}
-#answerbox1 .mensajewindowbox{
-	margin-left: 85px;
-	padding-bottom: 20px;
-}
-#answerbox1 .aselection{
-	color: #fff;
-	display: block;
-	padding:6px 12px;
-	float: right;
-	border-radius: 6px;
-}
-#answerbox1 .yep{
-	background: #ff8000;
-}
-#answerbox1 .yep:hover{
-	background: #212121;
 }

@@ -1,7 +1,7 @@
 USE [priceline]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Presupuesto]    Script Date: 09/06/2014 16:21:28 ******/
+/****** Object:  StoredProcedure [dbo].[Presupuesto]    Script Date: 09/07/2014 15:16:34 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Presupuesto]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Presupuesto]
 GO
@@ -9,12 +9,13 @@ GO
 USE [priceline]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Presupuesto]    Script Date: 09/06/2014 16:21:28 ******/
+/****** Object:  StoredProcedure [dbo].[Presupuesto]    Script Date: 09/07/2014 15:16:34 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -118,11 +119,12 @@ IF(@option = 1)
 BEGIN
 	SELECT *  FROM ##tempPresupuesto t	ORDER BY importancia
 	SELECT idSupermercado1,SUM(Supermercado1) CostoTotal1 ,idSupermercado2,SUM(Supermercado2) CostoTotal2,idSupermercado3, SUM(Supermercado3) CostoTotal3,idSupermercado4, SUM(Supermercado4) CostoTotal4 ,idSupermercado5 ,SUM(Supermercado5) CostoTotal5  FROM ##tempPresupuesto t group by idSupermercado1,idSupermercado2,idSupermercado3,idSupermercado4,idSupermercado5 
-	SELECT (Nombre +' - '+ Marca + '  ' + Cantidad) 'Nombre',[idProducto],[Descripcion],[Cantidad],[Marca],[Categoria],[Foto],[Visitado] FROM Producto WHERE idProducto in (SELECT idProducto FROM ##tempPresupuesto)
+	SELECT (P.Nombre +' - '+ P.Marca + '  ' + P.Cantidad) 'Nombre',P.[idProducto],P.[Descripcion],P.[Cantidad],P.[Marca],(SELECT nombre  FROM Categorias WHERE id_categoria = P.Categoria ) 'Categoria',P.[Foto],P.[Visitado] FROM Producto P WHERE P.idProducto in (SELECT idProducto FROM ##tempPresupuesto)
 	SELECT * FROM Supermercado WHERE idSupermercado IN (SELECT idSupermercado FROM ##tempPresupuesto)
 END
 
 END
+
 
 
 
