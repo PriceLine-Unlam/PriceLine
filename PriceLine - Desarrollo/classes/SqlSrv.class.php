@@ -100,6 +100,7 @@ class SqlSrv
     public function query($query)
     {
         $this->statement = sqlsrv_query($this->connection, $query);
+        
         if (!$this->statement) {
             die(print_r(sqlsrv_errors(), true));
         }

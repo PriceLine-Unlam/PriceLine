@@ -4,14 +4,12 @@
 						
 							<!-- Links -->
 								<section class="widget-links">
-									<h2>Random Stuff</h2>
-									<ul class="style2">
-										<li><a href="#">Etiam feugiat condimentum</a></li>
-										<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-										<li><a href="#">Sed porttitor cras in erat nec</a></li>
-										<li><a href="#">Felis varius pellentesque potenti</a></li>
-										<li><a href="#">Nullam scelerisque blandit leo</a></li>
-									</ul>
+									<a href="BuscadorProducto.php"><h2>Buscá tus productos</h2></a>
+                                                                        <a href="BuscadorProducto.php">
+                                                                            <span>
+                                                                            En esta sección puedes buscar todos los productos, pero antes selecciona la categoria a la que corresponda tu busqueda
+                                                                            </span>
+                                                                        </a>
 								</section>
 						
 						</div>
@@ -19,14 +17,12 @@
 						
 							<!-- Links -->
 								<section class="widget-links">
-									<h2>Random Stuff</h2>
-									<ul class="style2">
-										<li><a href="#">Etiam feugiat condimentum</a></li>
-										<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-										<li><a href="#">Sed porttitor cras in erat nec</a></li>
-										<li><a href="#">Felis varius pellentesque potenti</a></li>
-										<li><a href="#">Nullam scelerisque blandit leo</a></li>
-									</ul>
+									<a href="Supermercado.php"><h2>Buscá tu supermercado</h2></a>
+                                                                        <a href="Supermercado.php">
+                                                                            <span>
+                                                                            Aquí podrás encontrar los locales y todos sus productos, dentro de tu localidad
+                                                                            </span>
+                                                                        </a>
 								</section>
 						
 						</div>
@@ -34,14 +30,12 @@
 						
 							<!-- Links -->
 								<section class="widget-links">
-									<h2>Random Stuff</h2>
-									<ul class="style2">
-										<li><a href="#">Etiam feugiat condimentum</a></li>
-										<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-										<li><a href="#">Sed porttitor cras in erat nec</a></li>
-										<li><a href="#">Felis varius pellentesque potenti</a></li>
-										<li><a href="#">Nullam scelerisque blandit leo</a></li>
-									</ul>
+									<a href="Presupuesto.php"><h2>Presupuestos</h2></a>
+                                                                        <a href="Presupuesto.php">
+                                                                            <span>
+                                                                            En esta sección podrás encontrar los presupuestos mas convenientes con los productos que mas te gustan
+                                                                            </span>
+                                                                        </a>
 								</section>
 						
 						</div>

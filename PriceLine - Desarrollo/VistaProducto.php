@@ -4,6 +4,9 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php 
+    include('includes/infoProducto.php');
+?>
 <html>
 	<head>
 		<title>PriceLine</title>
@@ -15,6 +18,19 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+                <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/alertify.default.css"/>
+                <link rel="stylesheet" href="css/alertify.core.css"/>
+                <script>
+                     function verInfo(nombre,direccion,horario){
+                        
+                        alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion+"<br> Horario: "+ horario +"", function () {
+                                    
+                                    
+                              });
+                              $('.alertify-dialog').css('height','250px');
+                    }
+                </script>    
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -53,10 +69,30 @@
 									<div>
 										<div class="row">
 											<div class="5u">
-												<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
+												<a href="" class="image image-full"><img src="data:image/png;base64,<?php echo $info_producto[0][0]['Foto'] ?>" alt="" /></a>
 											</div>
 											<div class="5u">
-												
+                                                                                            <div class="row">
+                                                                                                <p><b><u><?php echo $info_producto[0][0]['Nombre'] ?></u></b><br>
+                                                                                                <?php if($info_producto[0][0]['nombre_supermercado'] != ''){ ?>
+                                                                                                    Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $info_producto[0][0]['nombre_supermercado'] ?>','<?php echo $info_producto[0][0]['Direccion'] ?>','<?php echo $info_producto[0][0]['Horario'] ?>');"> <?php echo $info_producto[0][0]['nombre_supermercado'] ?></span><br>
+                                                                                                <?php }else{ ?>
+                                                                                                    Supermercado : -
+                                                                                                <?php } ?>
+                                                                                                <?php if($info_producto[0][0]['Valor'] !=''){ 
+                                                                                                     $valor = $info_producto[0][0]['Valor'];
+                                                                                                }else{
+                                                                                                    $valor = 0.00;
+                                                                                                }
+?>
+                                                                                                Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?></p>
+                                                                                                <?php if(isset($_SESSION['email_usuario'])){ ?>
+                                                                                                <?php if($info_producto[0][0]['nombre_supermercado'] !='' ){ ?>
+                                                                                                    <a href="">Validar</a><a href="">Modificar Precio</a>
+                                                                                                <?php }else{ ?>
+                                                                                                    <a href="">Agregar a Supermercado</a>
+                                                                                                <?php }} ?>
+                                                                                            </div>
 											</div>
 										</div>
 									</div>
@@ -78,85 +114,6 @@
 						
 							<!-- Box -->
 								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_50972570.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_50972570.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Busc� tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
 									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
 									<div class="box-prod">
 											<p>Busc� tus productos</p>

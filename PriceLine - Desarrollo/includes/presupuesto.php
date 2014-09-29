@@ -68,6 +68,7 @@ if(isset($_GET['id'])){
         $query = "EXEC [Presupuesto] 'SIN_USUARIO',".$_GET['id'];
          $datos = $sql->fetchArrayMultiple($query);
     }
+    
    
 }
 
@@ -97,9 +98,14 @@ if(isset($_GET['idLista'])){
     
     $idLista = $_GET['idLista'];
     
-    $query = "EXEC detallePresupuestoSP ".$idLista.",'".$_SESSION['usuario_email']."'";
-    
+    if(isset($_SESSION['usuario_email'])){
+        $query = "EXEC detallePresupuestoSP ".$idLista.",'".$_SESSION['usuario_email']."'";
+    }else{
+        $query = "EXEC detallePresupuestoSP ".$idLista.",'SIN_USUARIO'";
+    }
+
     $datos = $sql->fetchArray($query);
+   
 }
 if($_POST['accion'] == 'modificarLista'){
     

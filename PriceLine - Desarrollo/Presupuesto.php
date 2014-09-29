@@ -130,7 +130,7 @@ include('includes/presupuesto.php');
 									<div>
 										<div class="row">
 											<div class="5u">
-												<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>
+												<a href="DetallePresupuesto.php?id=<?php echo $datos[0][0]['idLista'] ?>" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>
 											</div>
 											<div class="7u">
 												<div class="row">

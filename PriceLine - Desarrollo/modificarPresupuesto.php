@@ -36,6 +36,7 @@
 		<script src="js/skel-panels.min.js"></script>
                 <script src="js/jquery-ui.min.js"></script>
                 <script type="text/javascript" src="js/alertify.js"></script>
+                <link rel="stylesheet" href="css/jquery-ui.css"/>
                 <link rel="stylesheet" href="css/alertify.default.css"/>
                 <link rel="stylesheet" href="css/alertify.core.css"/>
 		<noscript>

@@ -736,12 +736,12 @@ body .ui-tooltip {
     font-size: 1em;
 }
 .ui-widget-content {
-    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
+    background: #ffffff;
     border: 1px solid #aaaaaa;
-    color: #222222;
+    color: #696969;
 }
 .ui-widget-content a {
-    color: #222222;
+    color: #696969;
 }
 .ui-widget-header {
     background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #cccccc;
@@ -763,7 +763,7 @@ body .ui-tooltip {
     text-decoration: none;
 }
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
-    background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #dadada;
+    background: #ff8000;
     border: 1px solid #999999;
     color: #212121;
     font-weight: normal;
