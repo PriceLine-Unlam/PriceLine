@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('../classes/SqlSrv.class.php');
 $sql = new SqlSrv();
 
@@ -61,5 +61,33 @@ if($_POST['accion'] == 'registrar'){
     }
 }
 
+if($_POST['accion'] == 'modificarPrecio'){
+    
+    $precio = str_replace(',','.',$_POST['valor']);
+    $supermercado = $_POST['idSupermercado'];
+    $producto = $_POST['idProducto'];
+    $usuario = $_SESSION['usuario_email'];
+    
+    $query = "EXEC modificarPrecio '".$precio."',".$producto.",".$supermercado.",'".$usuario."'";
+    
+    $ok = $sql->query($query);
+    echo 'alertify.alert("<u>Producto</u></br> Se ha ingresado el valor con exito!", function () {  });$(".alertify-dialog").css("height","250px");';
+}
 
+if($_POST['accion'] == 'validarPrecio'){
+    
+    $supermercado = $_POST['idSupermercado'];
+    $producto = $_POST['idProducto'];
+    $usuario = $_SESSION['usuario_email'];
+    
+    $query = "EXEC validarPrecio ".$producto.",".$supermercado.",'".$usuario."'";
+    
+    $ok = $sql->query($query);
+    
+    if($ok){
+            echo 'alertify.alert("<u>Producto</u></br>  Ha validado con exito el precio!", function () {  });$(".alertify-dialog").css("height","250px");';
+    }else{
+        echo 'alertify.alert("<u>Producto</u></br> Ustedes ya ha validado este precio!", function () {  });$(".alertify-dialog").css("height","250px");';
+    }
+}
 
