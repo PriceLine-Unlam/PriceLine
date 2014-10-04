@@ -82,12 +82,12 @@ if($_POST['accion'] == 'validarPrecio'){
     
     $query = "EXEC validarPrecio ".$producto.",".$supermercado.",'".$usuario."'";
     
-    $ok = $sql->query($query);
+    $ok = $sql->fetchArray($query);
     
-    if($ok){
+    if($ok[0]['resultado'] == 1){
             echo 'alertify.alert("<u>Producto</u></br>  Ha validado con exito el precio!", function () {  });$(".alertify-dialog").css("height","250px");';
     }else{
-        echo 'alertify.alert("<u>Producto</u></br> Ustedes ya ha validado este precio!", function () {  });$(".alertify-dialog").css("height","250px");';
+        echo 'alertify.alert("<u>Producto</u></br> Usted ya ha validado este precio!", function () {  });$(".alertify-dialog").css("height","250px");';
     }
 }
 

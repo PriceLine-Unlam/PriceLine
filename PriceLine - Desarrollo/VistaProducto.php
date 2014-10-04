@@ -34,9 +34,9 @@
                     function validarPrecio(){
                          alertify.confirm("<p>Esta seguro que quiere validar el precio de este producto?</p>", function (e) {
                                 if (e) {
-                                      alertify.success("Has pulsado '" + alertify.labels.ok + "'");
-                                } else {
-                                            alertify.error("Has pulsado '" + alertify.labels.cancel + "'");
+                                      $.post("includes/acciones.php",{ accion : 'validarPrecio', idSupermercado : <?php echo $info_producto[0][0]['idSupermercado'] == ''? '"-"':$info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto'] == ''?'"-"':$info_producto[0][0]['idProducto']  ?> } , function(data){
+                                                                           eval(data);     
+                                                                        });
                                 }
                             });
                              $('.alertify-dialog').css('height','195px');
@@ -49,7 +49,7 @@
                                       var exp = /^[0-9]+(\,[0-9]+)?$/;
                                         var valor =  $('#precioNuevo').val();
                                       if(valor.match(exp)){
-                                          $.post("includes/acciones.php",{ accion : 'modificarPrecio', valor : valor, idSupermercado : <?php echo $info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto']  ?> } , function(data){
+                                          $.post("includes/acciones.php",{ accion : 'modificarPrecio', valor : valor, idSupermercado : <?php echo $info_producto[0][0]['idSupermercado'] == ''? '"-"':$info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto'] == ''?'"-"':$info_producto[0][0]['idProducto']  ?> } , function(data){
                                                                            eval(data);     
                                                                         });
                                       }else{
@@ -120,7 +120,7 @@
                                                                                                     $valor = 0.00;
                                                                                                 }
 ?>
-                                                                                                    Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?><img src="images/val_<?php echo $info_producto[0][0]['Validez']; ?>.png" style="width:85px;height:30px;"></p>
+                                                                                                    Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?><img src="images/val_<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>.png" style="width:85px;height:30px;"></p>
                                                                                                 <?php if(isset($_SESSION['usuario_email'])){ ?>
                                                                                                 <?php if($info_producto[0][0]['nombre_supermercado'] !='' ){ ?>
                                                                                                     <a href="" onclick="return validarPrecio();">Validar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
