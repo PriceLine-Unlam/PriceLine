@@ -1,3 +1,4 @@
+<?php if(!$mobile){ ?>
 <footer id="footer" class="container">
 					<div class="row">
 						<div class="3u">
@@ -65,3 +66,5 @@
 						</div>
 					</div>
 </footer>
+
+<?php } ?>

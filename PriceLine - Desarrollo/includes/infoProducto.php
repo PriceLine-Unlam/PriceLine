@@ -18,4 +18,6 @@ if(isset($_GET['idProducto'])){
     $info_producto = $sql->fetchArrayMultiple($query);
     
     
+    $query = "select top 4 * from Producto order by visitado desc";
+    $productos_visitados = $sql->fetchArrayMultiple($query);
 }

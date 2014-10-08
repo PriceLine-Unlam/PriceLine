@@ -25,10 +25,19 @@
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
                 <script>
-                    $(function(){
-                       // $('#answerbox1').jqm();
-                             
-                    });
+                   function recuperarContrasena(){
+                       alertify.confirm("<p>Ingrese el email registrado : <input type='text' id='emailRec' style='height: 35px; width:255px; padding-bottom: 2px;'> </p>", function (e) {
+                                if (e) {
+                                        var valor =  $('#emailRec').val();
+                                          $.post("includes/acciones.php",{ accion : 'RecuperarContrasena', email : valor } , function(data){
+                                                                           eval(data);     
+                                                                        });
+                                      
+                                } 
+                            });
+                            $('.alertify-dialog').css('height','190px');
+                              return false;
+                   }
                     
                 </script>
                 
@@ -67,7 +76,7 @@
 											<input type="password" class="textLog" id="password" name="password" placeholder="Password" /><br>
 											<ul align="center">
                                                                                             <li><a href="" onclick="return ingreso();" class="buttonLog small fa fa-arrow-circle-right">Ingresar</a></li>
-                                                                                            <li><a href="" onclick="" >Recuperar Contraseña</a> </li>
+                                                                                            <li><a href="" onclick="return recuperarContrasena();" >Recuperar Contraseña</a> </li>
 											</ul>
 										</div>
 										<div class="6u">
