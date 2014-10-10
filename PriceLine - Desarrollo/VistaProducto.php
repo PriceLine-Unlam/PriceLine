@@ -35,7 +35,7 @@
                          alertify.confirm("<p>Esta seguro que quiere validar el precio de este producto?</p>", function (e) {
                                 if (e) {
                                       $.post("includes/acciones.php",{ accion : 'validarPrecio', idSupermercado : <?php echo $info_producto[0][0]['idSupermercado'] == ''? '"-"':$info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto'] == ''?'"-"':$info_producto[0][0]['idProducto']  ?> } , function(data){
-                                                                           eval(data);     
+                                                                           eval(data);
                                                                         });
                                 }
                             });
@@ -120,7 +120,7 @@
                                                                                                     $valor = 0.00;
                                                                                                 }
 ?>
-                                                                                                    Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?><img src="images/val_<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>.png" style="width:85px;height:30px;"></p>
+                                                                                                    Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?><img id="imagen_validez" val="<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>" src="images/val_<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>.png" style="width:85px;height:30px;"></p>
                                                                                                 <?php if(isset($_SESSION['usuario_email'])){ ?>
                                                                                                 <?php if($info_producto[0][0]['nombre_supermercado'] !='' ){ ?>
                                                                                                     <a href="" onclick="return validarPrecio();">Validar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
@@ -144,18 +144,21 @@
 		<!-- Features Wrapper -->
 			<div id="features-wrapper">
 				<div class="container">
+                                    <h2>Productos más Visitados</h2> 
 					<div class="row">
+                                           <?php  foreach($productos_visitados[0] as $pr){ ?>
 						<div class="3u">
 						
 							<!-- Box -->
 								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
+                                                                    <a href="VistaProducto.php?idProducto=<?php echo $pr['idProducto'] ?>" class="image image-full"><img src="data:image/png;base64,<?php echo $pr['Foto'] ?>" alt="" /></a>
 									<div class="box-prod">
-											<p>Busc� tus productos</p>
+											<p><?php echo $pr['Nombre'] .'-'. $pr['Cantidad'] ?></p>
 									</div>
 								</section>
 
 						</div>
+                                            <?php } ?> 
 					</div>
 				</div>
 			</div>
