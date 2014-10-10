@@ -253,7 +253,7 @@
 					, HorarioHasta : HorarioHasta
 					, AbiertoDias_nombre : AbiertoDias_nombre
 					} , function(data){
-						   alert(data);
+						   eval(data);
 				   });
 				}
 				

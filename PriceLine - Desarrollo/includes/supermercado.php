@@ -10,6 +10,22 @@ if(isset($_POST['accion'])){
 
 $sql = new SqlSrv();
 
+if($bandeja == 'sin_usuario' ){
+    
+    $datos[] = '';
+	$query = " EXEC PLObtenerSupermercadosCercanos 'SIN_USUARIO' ";
+	$datos = $sql->fetchArrayMultiple($query);
+    
+}
+
+if($bandeja == 'usuario_login' ){
+    
+    $datos[] = '';
+	$query = " EXEC PLObtenerSupermercadosCercanos '".$_SESSION['usuario_email']."','".$_SESSION['usuario_lat']."','".$_SESSION['usuario_lon']."' ";
+	$datos = $sql->fetchArrayMultiple($query);
+	
+}
+
 if($_POST['accion'] == 'registrar'){
    
     //print_r($_REQUEST);
@@ -45,8 +61,8 @@ if($_POST['accion'] == 'registrar'){
            ,'".$numero."'
            ,'".$localidad."'
            ,'".$provincia."'
-           ,'".$lat."'
            ,'".$lng."'
+           ,'".$lat."'
            ,'".$horario."'
            ,'0')";
 		   
@@ -71,6 +87,6 @@ if($_POST['accion'] == 'registrar'){
                 $ok = $sql->query($query);
             }
     
-    echo $query;    
+    echo 'alertify.alert("<u>Supermercado</u></br> El supermercado fué registrado con éxito!", function () { window.location.reload(); });$(".alertify-dialog").css("height","250px");';    
     
 }

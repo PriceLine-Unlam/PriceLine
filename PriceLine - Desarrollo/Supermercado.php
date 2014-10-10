@@ -65,6 +65,39 @@ include('includes/supermercado.php');
 						<li><p class="parrafo_presupuesto">Para agregar supermercados debe <a href="Login.php">ingresar/registrarse</a>.</p></li>
 						<?php }?>
 				    </ul>
+					
+					<?php 	if ( count( $datos[0] ) > 0 ){
+					
+								for($i=0;count($datos[0])>$i;$i++){?>
+					
+					<div class="row">
+						<div class="12u">
+						
+							<!-- Banner -->
+								<div id="banner" class="box">
+									<div>
+										<div class="row">
+											<div class="5u">
+												<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/supermercado.jpg" alt="" /></a>
+											</div>
+											<div class="7u">
+												<div class="row">
+													<p><b><u><?php echo $datos[0][$i][Nombre];?></u></b><br>
+													<?php echo $datos[0][$i][Direccion];?><br>
+													<?php echo ucwords(strtolower($datos[0][$i][Provincia]));?><br>
+													<?php echo str_replace('de', '<br>de', $datos[0][$i][Horario]);?></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+						</div>
+					</div>
+					
+					<?php 	}
+						}?>
+					
 				</div>
 			</div>
 			
