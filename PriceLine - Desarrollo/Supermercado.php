@@ -78,7 +78,8 @@ include('includes/supermercado.php');
 									<div>
 										<div class="row">
 											<div class="5u">
-												<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/supermercado.jpg" alt="" /></a>
+												<a href="agregarProducto.php?idSupermercado=<?php echo base64_encode(base64_encode($datos[0][$i][idSupermercado])); ?>" class="image image-canasta">
+												<img src="images/supermercado.jpg" onmouseover="this.src='images/agregarProductos.jpg';" onmouseout="this.src='images/supermercado.jpg';" alt="" /></a>
 											</div>
 											<div class="7u">
 												<div class="row">

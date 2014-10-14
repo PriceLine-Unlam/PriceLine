@@ -26,6 +26,14 @@ if($bandeja == 'usuario_login' ){
 	
 }
 
+if($bandeja == 'informa_super' ){
+    
+	$datos[] = '';
+	$query = " EXEC dbo.PLObtenerDatosSupermercado '".base64_decode(base64_decode($_GET[idSupermercado]))."'  ";
+	$datos = $sql->fetchArrayMultiple($query);
+	
+}
+
 if($_POST['accion'] == 'registrar'){
    
     //print_r($_REQUEST);
@@ -88,5 +96,19 @@ if($_POST['accion'] == 'registrar'){
             }
     
     echo 'alertify.alert("<u>Supermercado</u></br> El supermercado fué registrado con éxito!", function () { window.location.reload(); });$(".alertify-dialog").css("height","250px");';    
+    
+}
+
+if($_POST['accion'] == 'registrarProducto'){
+   
+    //print_r($_REQUEST);
+    $idProducto = $_POST['idProducto'];
+    $Precio = $_POST['Precio'];
+    $supermercado = base64_decode(base64_decode($_POST['supermercado']));
+    
+    $query = " EXEC dbo.PLInsertarNuevoProductoASupermercado '".$idProducto."', '".$supermercado."' ,'".$Precio."' ,'".$_SESSION['usuario_email']."' ";
+    $sql->query($query);
+	
+    echo 'alertify.alert("<u>Producto</u></br> El producto fué registrado con éxito!", function () { window.location.reload(); });$(".alertify-dialog").css("height","250px");';    
     
 }

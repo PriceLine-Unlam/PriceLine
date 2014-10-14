@@ -7,7 +7,6 @@
 <?php
     session_start();
     include('includes/init.php');
-
 ?>
 <html>
 	<head>
