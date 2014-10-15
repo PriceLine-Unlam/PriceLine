@@ -29,7 +29,7 @@ if($bandeja == 'usuario_login' ){
 if($bandeja == 'informa_super' ){
     
 	$datos[] = '';
-	$query = " EXEC dbo.PLObtenerDatosSupermercado '".base64_decode(base64_decode($_GET[idSupermercado]))."'  ";
+	$query = " EXEC PLObtenerDatosSupermercado '".base64_decode(base64_decode($_GET[idSupermercado]))."'  ";
 	$datos = $sql->fetchArrayMultiple($query);
 	
 }
@@ -63,7 +63,7 @@ if($_POST['accion'] == 'registrar'){
 	
 	$horario = $AbiertoDias_nombre.' de '.$HorarioDesde.'hs a '.$HorarioHasta.'hs';
     
-    $query = "INSERT INTO [priceline].[dbo].[Supermercado] VALUES
+    $query = "INSERT INTO [Supermercado] VALUES
            ('".$nombre."'
            ,'".$direccion."'
            ,'".$numero."'
@@ -77,8 +77,8 @@ if($_POST['accion'] == 'registrar'){
     $ok = $sql->query($query);
 	
 	if($ok){
-                $query = "INSERT INTO [priceline].[dbo].[Supermercado_log] VALUES
-					   ((SELECT MAX(idSupermercado) FROM [priceline].[dbo].[Supermercado])
+                $query = "INSERT INTO [Supermercado_log] VALUES
+					   ((SELECT MAX(idSupermercado) FROM [Supermercado])
 					   ,'".$nombre."'
 					   ,'".$direccion."'
 					   ,'".$numero."'
@@ -106,7 +106,7 @@ if($_POST['accion'] == 'registrarProducto'){
     $Precio = $_POST['Precio'];
     $supermercado = base64_decode(base64_decode($_POST['supermercado']));
     
-    $query = " EXEC dbo.PLInsertarNuevoProductoASupermercado '".$idProducto."', '".$supermercado."' ,'".$Precio."' ,'".$_SESSION['usuario_email']."' ";
+    $query = " EXEC PLInsertarNuevoProductoASupermercado '".$idProducto."', '".$supermercado."' ,'".$Precio."' ,'".$_SESSION['usuario_email']."' ";
     $sql->query($query);
 	
     echo 'alertify.alert("<u>Producto</u></br> El producto fué registrado con éxito!", function () { window.location.reload(); });$(".alertify-dialog").css("height","250px");';    
