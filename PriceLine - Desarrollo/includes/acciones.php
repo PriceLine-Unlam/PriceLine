@@ -61,7 +61,72 @@ if($_POST['accion'] == 'registrar'){
         echo 'alertify.alert("<u>Registración</u></br> El usuario ya existe, intente recuperar la contraseña si no la recuerda..", function () {  });$(".alertify-dialog").css("height","250px");';
     }
 }
+if($_POST['accion'] == 'editar'){
+    
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $provincia = $_POST['provincia'];
+    $localidad = $_POST['localidad'];
+    $direccion = $_POST['direccion'];
+    $numero = $_POST['numero'];
+    $provincia_nombre = $_POST['provincia_nombre'];
+    $localidad_nombre = $_POST['localidad_nombre'];
+    $email = $_POST['email'];
+    $password = base64_encode($_POST['password']);
 
+    
+        // $direccion_google = 'Calle, Población, Provincia / Estado, País';
+        //$direccion_google = 'San ignacio 2588, ituzaingo, buenos aires, argentina';
+        $direccion_google = $direccion+' '+$numero +', ' + $localidad_nombre +', ' + $provincia_nombre +', Argentina ';
+        try{
+            $resultado = file_get_contents(sprintf('http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s', urlencode($direccion_google)));
+            $resultado = json_decode($resultado, TRUE);
+
+            $lat = $resultado['results'][0]['geometry']['location']['lat'];
+            $lng = $resultado['results'][0]['geometry']['location']['lng'];
+
+        }catch(Exception $e){
+
+            echo "alert('". $e->getMessage()."')";
+        }
+
+        //Insert nuevo usuario
+        try{
+
+            $query = "UPDATE [Usuarios]
+                        SET [Nombre] = '".$nombre."'
+                           ,[Apellido] = '".$apellido."'
+                           ,[Latitud] = ".$lat."
+                           ,[Longitud] = ".$lng."
+                           ,[Direccion] = '".$direccion."'
+                           ,[Nro] = '".$numero."'
+                           ,[Localidad] = '".$localidad."'
+                           ,[Provincia] = '".$provincia."'
+                      WHERE Usuario = '".$email."'";
+            
+            $ok = $sql->query($query);
+            
+            if($password != ''){
+                 $query = "UPDATE [Usuarios]
+                            SET [Password] = '".$password."'
+                            WHERE Usuario = '".$email."'";
+                 $ok = $sql->query($query);
+            }
+           // echo $query;
+            if($ok){
+                $query = "INSERT INTO Usuarios_log VALUES ('".$email."','".$nombre."',"
+                    . "'".$apellido."',".$lat.",".$lng.",'".$direccion."','".$numero."',"
+                    . "'".$localidad."','".$provincia."','".$email."','".$password."','".$email."','".date('Y-m-d')."','M')";
+
+                $ok = $sql->query($query);
+            }
+
+        }catch(Exception $e){
+             echo "alert('". $e->getMessage()."')";
+        }
+        echo 'alertify.alert("<u>Editar Perfil</u></br> Se ha editado la informacion con exito!", function () { window.location.href="login.php"  });$(".alertify-dialog").css("height","200px");';
+    
+}
 if($_POST['accion'] == 'modificarPrecio'){
     
     $precio = str_replace(',','.',$_POST['valor']);

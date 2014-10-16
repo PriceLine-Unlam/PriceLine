@@ -4,14 +4,7 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<?php 
-session_start();
-if(isset($_GET['login'])){
-    
-     session_destroy();
-    
-}
-?>
+
 <html>
 	<head>
 		<title>PriceLine</title>
@@ -28,6 +21,20 @@ if(isset($_GET['login'])){
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
+
+     
+     
+<?php session_start();
+if(isset($_GET['login'])){ session_destroy();  ?>
+                 <script>
+                   $.ready(function(){
+                           FB.logout(function(response) {});
+                           //window.location.href="index.php";
+                   }) 
+                        
+                </script>
+<?php } ?>               
+
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -126,6 +133,12 @@ if(isset($_GET['login'])){
 										</header>
 										<p>En esta sección podrás encontrar los presupuestos mas convenientes con 
 										los productos que mas te gustan</p>
+                                                                                <div
+                                                                                class="fb-like"
+                                                                                data-share="true"
+                                                                                data-width="450"
+                                                                                data-show-faces="true">
+                                                                              </div>
 									</div>
 								</section>
 

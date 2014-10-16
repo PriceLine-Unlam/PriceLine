@@ -1,8 +1,8 @@
-<?php session_start(); 
+<?php error_reporting(0);
+session_start();
 require_once ('Mobile_Detect.php');
 $detect = new Mobile_Detect();
 $mobile = $detect->isMobile();
-//$mobile = false;
 ?>
 <header id="header">
 
@@ -24,7 +24,7 @@ $mobile = $detect->isMobile();
                                 <?php if(!isset($_SESSION['usuario_nombre'])){ ?>
                                     <li class="current_page_item"><a href="Login.php">Login</a></li>
                                 <?php }else{?>
-                                    <li class="current_page_item"><a href="Login.php"><?php echo $_SESSION['usuario_nombre'];?></a></li>
+                                    <li class="current_page_item"><a href="editarPerfil.php"><?php echo $_SESSION['usuario_nombre'];?></a></li>
                                     <li class="current_page_salir" title="salir" ><a href="index.php?login=loginout">[Salir]</a></li>
                                 <?php }?>    
                         </ul>

@@ -40,7 +40,74 @@
                    }
                     
                 </script>
-                
+                <script>
+  window.fbAsyncInit = function() {
+         FB.init({
+           appId      : '313421392182907',//'853152691361977' version anterior, // App ID
+           status     : true, // check login status
+           cookie     : true, // enable cookies to allow the server to access the session
+           xfbml      : true  // parse XFBML
+         });
+ 
+        FB.getLoginStatus(function(response) {
+                    if (response.status == 'connected') {
+                                login();
+                    } else {
+                      logout();
+                    }
+                  });
+ 
+         /* Eventos para capturar el login del usuario */
+         FB.Event.subscribe('auth.login', function(response) { // cuando autoriza conexion
+             login();
+         });
+ 
+       /* Funcion que se ejecuta cuando ya se autoriza la conexion */
+       function login(){
+           console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function(response) {
+                      $.post("ingreso.php",{ accion : 'facebook' , email: response.email,nombre : response.first_name , apellido : response.last_name} , function(data){ eval(data);});
+                      });
+       }
+       
+       /* Funcion que se ejecuta cuando aun no se hace la conexion con facebook */
+       function logout(){
+          // window.location.href = 'index.php';
+          //alert('usted se ha desconectado de facebook!');
+          console.log('deslogueo');
+       }
+       /* Funcion para extraer algunos datos del susuario, como nombre y foto */
+       function fqlQuery(){
+           FB.api('/me', function(response) {
+                var query = FB.Data.query('select name,email, hometown_location, sex, pic_square from user where uid={0}', response.id);
+                query.wait(function(rows) {
+                        console.log(rows);
+                });
+           });
+       }};
+        
+ 
+       // Load the SDK Asynchronously
+       (function(d){
+          var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement('script'); js.id = id; js.async = true;
+          js.src = "//connect.facebook.net/en_US/all.js";
+          ref.parentNode.insertBefore(js, ref);
+        }(document));
+        
+               
+       /* Funcion para abrir la ventanita y conectarse a facebook */
+        function facebookLogin() {
+                FB.login(function(response) {
+                                if (response.authResponse){
+                                    login();
+                                } else {
+                                    logout();
+                                }
+                              },{ scope: 'email' });
+        }
+     </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -85,7 +152,9 @@
 											Haciendo click aquí</p><br>
 											<ul align="center">
 												<li><a href="Registrar.php" class="buttonReg big fa fa-save">Registrar</a></li>
+                                                                                                <li><a id='fb-login' href='#' onclick='facebookLogin()' style=""><img src="http://oundmedia.com/facebook-connect-button.png" border="0"/></a></li>
 											</ul>
+                                                                                        
 										</div>
 									</div>
 								
