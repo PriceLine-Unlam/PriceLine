@@ -87,6 +87,13 @@
 		<!-- Banner Wrapper -->
 			<div id="banner-wrapper">
 				<div class="container">
+					<ul >
+						<?php if(isset($_SESSION['usuario_nombre'])){ ?>
+						<li><a href="agregarProducto.php" onclick=""  class="buttonReg small fa fa-plus-circle">Agregar Producto</a></li>
+						<?php }else{ ?>
+						<li><p class="parrafo_presupuesto">Para agregar productos debe <a href="Login.php">ingresar/registrarse</a>.</p></li>
+						<?php }?>
+				    </ul>
 					<div class="row">
 						<div class="12u">
 						

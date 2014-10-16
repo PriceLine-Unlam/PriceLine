@@ -6,6 +6,11 @@
 -->
 <?php
     session_start();
+	$bandeja = "no_informa_super";
+	if ($_GET[idSupermercado]){
+		$bandeja = "informa_super";
+	}
+    include('includes/supermercado.php');
 	
 ?>
 <html>
@@ -34,52 +39,69 @@
                 <script type="text/javascript">
 					function GuardarProducto(){
 					
-						var categoria = $('#categoriaProducto').val();
-						var nombreProducto = $('#nombreProducto').val();
-						var marcaProducto = $('#marcaProducto').val();
-						var tamano = $('#tamano').val();
+						var producto = $('#producto').val();
+						var idProducto = $('#idProducto').val();
+						var Precio = $('#Precio').val();
+						Precio = Precio.replace(".","");
+						Precio = Precio.replace(",",".");
+						var precioSinComas = Precio.replace(",", "");
+						precioSinComas = precioSinComas.replace(".", "");
+						var supermercado = "<?php echo $_GET[idSupermercado]; ?>";
 						var error = "";
 						
-						if ( nombreProducto == "" ){
-							error += "Debe ingresar un nombre de producto<br>";
+						if ( producto == "" ){
+							error += 'Debe ingresar un producto</br>';
 						}
 						
-						if ( marcaProducto == "" ){
-							error += "Debe ingresar una marca del producto<br>";
+						if ( Precio == "" ){
+							error += 'Debe ingresar un precio</br>';
 						}
 						
-						if ( categoria == "" ){
-							error += "Debe ingresar una categoria del producto<br>";
+						if ( precioSinComas <= 0 ){
+							error += 'Debe ingresar un precio distinto de cero</br>';
 						}
 						
-						if ( tamano == "" ){
-							error += "Debe ingresar un tamaño del producto<br>";
-						}
-						
-						if(error != ''){
-							alertify.alert("<u>Registración de Producto</u></br>La registracion del producto tiene los siguientes errores : <br>" + error, function () {    
+						if ( error != '' ){
+							alertify.alert("<u>Registración del Producto</u></br>La registracion del producto tiene los siguientes errores : <br>" + error, function () {    
 							});
 							$('.alertify-dialog').css('height','550px');
 						}else{
-
-							$.post("includes/producto.php",{ accion : 'registrar' 
-							, nombreProducto : nombreProducto
-							, marcaProducto : marcaProducto 
-							, categoria : categoria
-							, tamano : tamano
-							} , function(data){
-								eval(data);
+						
+							$.post("includes/supermercado.php",{ accion : 'registrarProducto' 
+								, idProducto : idProducto
+								, Precio : Precio
+								, supermercado : supermercado
+								} , function(data){
+									   eval(data);
 							});
 							
 						}
-
-						return false;
 						
+						return false;
+					
 					}
                     $(function(){
-						$.post("includes/producto.php",{ prod : 'obtenerCategorias' } , function(data){
-							$('#categoriaProducto').html(data);
-						});
+						$('#Precio').mask('0.000,00', {reverse: true});
+                        var cache = {};
+                            $( "#producto" ).autocomplete({
+                            minLength: 2,
+                            source: function( request, response ) {
+                            var term = request.term;
+                            if ( term in cache ) {
+                            response( cache[ term ] );
+                            return;
+                            }
+                                $.getJSON( "includes/productoPresupuesto.php", request, function( data, status, xhr ) {
+                                    cache[ term ] = data;
+                                    response( data );
+                                });
+                            },
+                             select: function( event, ui ) {
+                                     $( "#producto" ).val(ui.item.value);
+                                     $( "#idProducto" ).val(ui.item.id);
+                                     return false;
+                                }
+                            });
                     });
                 </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
@@ -104,7 +126,7 @@
 		<!-- Banner Wrapper -->
 			<div id="banner-wrapper">
 				<div class="container">
-					<div class="row">
+                                    <div class="row">
 						<div class="12u">
 						
 							<!-- Banner -->
@@ -112,29 +134,22 @@
 									
 									<div class="row">
 										<div class="12u">
+										<?php if ($_GET[idSupermercado]){ ?>
+											<h2 align="center">Agregar Producto a <br>"<?php echo $datos[0][0][Nombre_Supermercado];?>": </h2>
+										<?php }else{ ?>
 											<h2 align="center">Agregar Producto: </h2>
+										<?php } ?>
 										</div>
 									</div>
 									<div class="row half">
 										<div class="1u">
 										</div>
 										<div class="7u">
-											<input type="text" class="textReg" id="nombreProducto" name="nombreProducto" placeholder="Ingrese Nombre Producto"  /><br>
+											<input type="text" class="textReg" id="producto" name="Producto" placeholder="Ingrese Producto"  /><br>
+											<input type="hidden"  id="idProducto" name="idProducto"/>
 										</div>
 										<div class="3u">
-											<input type="text" class="textReg" id="tamano" name="tamano" placeholder="Ingrese Tamaño Producto"  /><br>
-										</div>
-										<div class="1u">
-										</div>
-									</div>
-									<div class="row half">
-										<div class="1u">
-										</div>
-										<div class="5u">
-											<input type="text" class="textReg" id="marcaProducto" name="marcaProducto" placeholder="Ingrese Marca Producto"  /><br>
-										</div>
-										<div class="5u">
-											<select  class="textSel" id="categoriaProducto" name="categoriaProducto"><option value="volvo"></option></select><br>
+											<input type="text" class="textReg" id="Precio" name="Precio" placeholder="Ingrese Precio"  /><br>
 										</div>
 										<div class="1u">
 										</div>
