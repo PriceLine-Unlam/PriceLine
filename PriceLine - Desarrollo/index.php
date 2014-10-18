@@ -105,6 +105,8 @@ if(isset($_GET['login'])){ session_destroy();  ?>
 								</section>
 
 						</div>
+                                            
+                                            <?php if(!$mobile){?>
 						<div class="4u">
 						
 							<!-- Box -->
@@ -143,6 +145,7 @@ if(isset($_GET['login'])){ session_destroy();  ?>
 								</section>
 
 						</div>
+                                            <?php } ?>
 					</div>
 				</div>
 			</div>
