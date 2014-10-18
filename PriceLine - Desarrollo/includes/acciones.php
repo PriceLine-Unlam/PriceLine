@@ -137,7 +137,20 @@ if($_POST['accion'] == 'modificarPrecio'){
     $query = "EXEC modificarPrecio '".$precio."',".$producto.",".$supermercado.",'".$usuario."'";
     
     $ok = $sql->query($query);
-    echo 'alertify.alert("<u>Producto</u></br> Se ha ingresado el valor con exito!", function () {  });$(".alertify-dialog").css("height","250px");';
+    echo 'alertify.alert("<u>Producto</u></br> Se ha ingresado el valor con exito!", function () { location.reload();   });$(".alertify-dialog").css("height","250px");';
+}
+if($_POST['accion'] == 'agregarSupermercado'){
+    
+    $Precio = str_replace(',','.',$_POST['valor']);
+    $supermercado = $_POST['idSupermercado'];
+    $idProducto = $_POST['idProducto'];
+    $usuario = $_SESSION['usuario_email'];
+    
+    $query = " EXEC PLInsertarNuevoProductoASupermercado '".$idProducto."', '".$supermercado."' ,'".$Precio."' ,'".$_SESSION['usuario_email']."' ";
+    $sql->query($query);
+	
+    echo 'alertify.alert("<u>Producto</u></br> El producto/precio fué registrado con éxito!", function () { location.reload();  });$(".alertify-dialog").css("height","250px");';    
+    
 }
 
 if($_POST['accion'] == 'validarPrecio'){

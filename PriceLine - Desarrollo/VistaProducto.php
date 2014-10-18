@@ -58,11 +58,33 @@
                                           
                                       }
                                       
-                                } else {
-                                            
                                 }
                             });
                             $('.alertify-dialog').css('height','190px');
+                              return false;
+                    }
+                    function agregarSupermercado(idProducto){
+                    
+                        alertify.confirm("<p>Seleccione un supermercado de la lista :<select id='supermercadoCercano' style='height: 35px; padding-bottom: 2px;'><?php echo $option_sup; ?></select> </p><p>Ingrese el precio : $ <input type='text' id='precioNuevo' style='height: 35px; padding-bottom: 2px;'> </p>", function (e) {
+                                if (e) {
+                                      //alertify.success("Has pulsado '" + alertify.labels.ok + "'");
+                                      var exp = /^[0-9]+(\,[0-9]+)?$/;
+                                        var valor =  $('#precioNuevo').val();
+                                        var supermercado = $('#supermercadoCercano').val();
+                                       // alert(supermercado);
+                                      if(valor.match(exp) && supermercado !=''){
+                                          $.post("includes/acciones.php",{ accion : 'agregarSupermercado', valor : valor, idSupermercado : supermercado , idProducto : <?php echo $info_producto[0][0]['producto'] == ''?'"-"':$info_producto[0][0]['producto']  ?> } , function(data){
+                                                                           eval(data);     
+                                                                        });
+                                      }else{
+                                          alertify.error('"El valor ingresado es incorrecto o no ha seleccionado supermercado."');
+                                          $('#agregarSupermercado').click();
+                                          
+                                      }
+                                      
+                                }
+                            });
+                            $('.alertify-dialog').css('height','300px');
                               return false;
                     }
                 </script>    
@@ -124,8 +146,9 @@
                                                                                                 <?php if(isset($_SESSION['usuario_email'])){ ?>
                                                                                                 <?php if($info_producto[0][0]['nombre_supermercado'] !='' ){ ?>
                                                                                                     <a href="" onclick="return validarPrecio();">Validar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
+                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado()"> Modificar Otro Supermercado</a>
                                                                                                 <?php }else{ ?>
-                                                                                                    <a href="">Agregar a Supermercado</a>
+                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado(<?php echo $info_producto[0][0]['producto'] ?>)">Agregar a Supermercado</a>
                                                                                                 <?php }} ?>
                                                                                             </div>
 											</div>

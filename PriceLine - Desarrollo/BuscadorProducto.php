@@ -184,7 +184,7 @@
 			<div id="features-wrapper">
 				<div class="container">
 					<div class="row">
-						<?php for($j=0; $j<4;$j++){ ?>
+						<?php for($j=0*($i*4); $j<(4*($i*2));$j++){ ?>
                                                 <div class="3u">
 						
 							<!-- Box -->
