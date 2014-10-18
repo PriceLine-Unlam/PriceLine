@@ -3,12 +3,19 @@
 include('../classes/SqlSrv.class.php');
 
 $sql = new SqlSrv();
-$productos = $sql->fetchArray("SELECT DISTINCT (Nombre +' - '+ Marca + '  ' + Cantidad) Nombre from Producto where Nombre +' '+ Marca like '%".$_REQUEST['term']."%' "); //devuelve un array
+$productos = $sql->fetchArray("SELECT DISTINCT (Nombre +' - '+ Marca + '  ' + Cantidad) Nombre, idProducto from Producto where Nombre +' '+ Marca like '%".$_REQUEST['term']."%' "); //devuelve un array
 
-$lista_prod = '[';
+$a_json = array();
+$a_json_row = array();
+//print_r($productos);die();
 
-foreach ($productos as $prod){
-    $lista_prod .= '"'.$prod['Nombre'].'",';
+foreach($productos as $row) {
+  $a_json_row["id"] = $row['idProducto'];
+  $a_json_row["value"] = $row['Nombre'];
+  array_push($a_json, $a_json_row);
+  
 }
- $lista_prod = substr($lista_prod, 0 , -1);
-echo $lista_prod.']';
+//print_r($a_json);
+$json = json_encode($a_json);
+
+echo $json;

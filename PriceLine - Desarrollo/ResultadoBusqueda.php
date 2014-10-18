@@ -4,6 +4,21 @@
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php
+    session_start();
+	
+	$bandeja = 'sin_usuario';
+	if($_SESSION['usuario_email']){
+		
+		$bandeja = 'usuario_login';
+	}
+	
+    include('includes/busqueda.php');
+	
+	//echo base64_decode($_GET[idProducto])."<br>";
+	//echo base64_decode($_GET[idLocalidad]);
+	
+?>
 <html>
 	<head>
 		<title>PriceLine</title>
@@ -27,164 +42,104 @@
 	<body class="homepage">
 
 		<!-- Header Wrapper -->
-			<div id="header-wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Header -->
-								<?php include('includes/header.php'); ?>
+		<div id="header-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="12u">
+					
+						<!-- Header -->
+							<?php include('includes/header.php'); ?>
 
-						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		
 		<!-- Banner Wrapper -->
-			<div id="banner-wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="12u">
-						
-							<!-- Banner -->
-								<div id="banner" class="box">
+		<div id="banner-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="12u">
+					
+						<!-- Banner -->
+							<div id="banner" class="box">
+									
 										
-											
-															
-									<div>
-										<section id="menu">
-											<div class="row">
-												<p>Seleccioná Tu Localidad</p>
-											</div>
-											<div class="row">
-												<div class="menu" style="width:100%;">
-													<div id="controls"></div>
-												</div>
-											</div>
-											<div class="row">
-												<div id="gmap-4" style="width:100%;height:300px;"></div>
-											</div>
-										</section>
-									</div>
 														
-										
-								
+								<div>
+									<section id="menu">
+										<div class="row">
+											<h2>Paso 2</h2>
+										</div>
+										<div class="row">
+											<p>Seleccioná Tu Supermercado</p>
+										</div>
+										<div class="row">
+										</div>
+										<div class="row">
+											<div class="12u">
+											<div id="gmap-4" style="width:100%;height:300px;"></div>
+											</div>
+										</div>
+									</section>
 								</div>
+													
+									
+							
+							</div>
 
-						</div>
 					</div>
 				</div>
 			</div>
-			
-		<!-- Features Wrapper -->
-			<div id="features-wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_50972570.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature">
-									<a href="#" class="image image-full"><img src="images/fotolia_50972570.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box box-feature last">
-									<a href="#" class="image image-full"><img src="images/fotolia_60056336.jpg" alt="" /></a>
-									<div class="box-prod">
-											<p>Buscá tus productos</p>
-									</div>
-								</section>
-
-						</div>
-					</div>
-				</div>
-			</div>
+		</div>
 		
-
 		<!-- Footer Wrapper -->
-			<div id="footer-wrapper">
-				<?php include('includes/footer.php'); ?>
-			</div>
-	<script src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.7?1343675510"></script>
-	<script src="js/libs.min.js"></script>
+		<div id="footer-wrapper">
+			<?php include('includes/footer.php'); ?>
+		</div>
+		
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+		<script>
+			// Note: This example requires that you consent to location sharing when
+			// prompted by your browser. If you see a blank space instead of the map, this
+			// is probably because you have denied permission for location sharing.
 
-	<script src="js/maplace.min.js"></script>
+			function initialize() {
+				var myLatlng = new google.maps.LatLng(<?php echo $datosUsr[0][0][Latitud]; ?>,<?php echo $datosUsr[0][0][Longitud]; ?>);
 
-	<script src="js/points.js"></script> 
-	<script src="js/app.js"></script>
+				var mapOptions = {
+					zoom: 15,
+					center: myLatlng
+				}
+				
+				var map = new google.maps.Map(document.getElementById('gmap-4'), mapOptions);
+
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: map,
+					title: '',
+					icon: 'http://maps.google.com/mapfiles/arrow.png'
+				});
+
+				var infowindow = new google.maps.InfoWindow({
+					content: '<div style="width:200px; height:75px"><h2 align="center"><?php if ( $_SESSION['usuario_email'] ) echo "Mi Casa"; else echo "Localidad"; ?></h2><p align="center"><?php echo $datosUsr[0][0][Direccion].' '.$datosUsr[0][0][Nro]; ?></p><p align="center"><?php echo ucwords(strtolower($datosUsr[0][0][provincia])); ?></p></div>' 
+				});
+
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map,marker);
+				});
+
+				$.post("includes/busqueda.php",{ accion : 'traerSupermercados' 
+				,lat : <?php echo $datosUsr[0][0][Latitud]; ?> 
+				,longitud : <?php echo $datosUsr[0][0][Longitud]; ?>
+				,idProducto : <?php echo base64_decode($_GET[idProducto]); ?>
+				},function(data){
+					eval(data);
+				});
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+
+		</script>
 	</body>
 </html>
