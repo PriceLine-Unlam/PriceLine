@@ -83,46 +83,50 @@
 						<div class="12u">
 						
 							<!-- Banner -->
+                                                        
 								<div id="banner" class="box">
 									<div>
 										<div class="row">
+                                                                                    
 											<div class="5u">
 												<!--<a href="DetallePresupuesto.html" class="image image-canasta"><img src="images/canasta1.jpg" alt="" /></a>-->
+                                                                                            <img src="images/importancia.png" style="position:relative;float:right;top:-70px;left:690px;width:150px;;">
                                                                                             <h2>Detalle</h2>
 											</div>
 											<div class="8u">
                                                                                             <table id="DataTables_Table_0" style="width:163%">
                                                                                                     <thead>
                                                                                                         <tr role="row">
-                                                                                                            <th>Producto</th>
-                                                                                                            <th> <?php echo $datos[3][0]['Nombre'] ?></th>
-                                                                                                            <th> <?php echo $datos[3][1]['Nombre'] ?></th>
-                                                                                                            <th> <?php echo $datos[3][2]['Nombre'] ?></th>
-                                                                                                            <th> <?php echo $datos[3][3]['Nombre'] ?></th>
-                                                                                                            <th> <?php echo $datos[3][4]['Nombre'] ?></th>
+                                                                                                            <th style="width:250px;">Producto</th>
+                                                                                                            <th style="width:150px;"> <?php echo $datos[3][0]['Nombre'] ?></th>
+                                                                                                            <th style="width:150px;"> <?php echo $datos[3][1]['Nombre'] ?></th>
+                                                                                                            <th style="width:150px;"> <?php echo $datos[3][2]['Nombre'] ?></th>
+                                                                                                            <th style="width:150px;"> <?php echo $datos[3][3]['Nombre'] ?></th>
+                                                                                                            <th style="width:150px;"> <?php echo $datos[3][4]['Nombre'] ?></th>
                                                                                                         </tr>
                                                                                                     </thead>
                                                                                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
                                                                                                         <?php for($i=0;$i<count($datos[0]);$i++){ ?>
                                                                                                             <tr class="<?php echo asignacionClass($datos[0][$i]['importancia']); ?>">
                                                                                                                 <td style="cursor : pointer" onclick="mostrarDatos('<?php echo $datos[2][$i]['Nombre']?>','<?php echo $datos[2][$i]['Descripcion']?>','<?php echo $datos[2][$i]['Marca']?>','<?php echo $datos[2][$i]['Categoria']?>');"><?php echo $datos[2][$i]['Nombre'] ?></td>
-                                                                                                                <td>$ <?php echo $datos[0][$i]['Supermercado1'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado2'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado3'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado4'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[0][$i]['Supermercado5'] ?></td>
+                                                                                                                <td style="text-align:center;">$ <?php echo trim($datos[0][$i]['Supermercado1']) ?></td>
+                                                                                                                <td style="text-align:center;">$ <?php echo trim($datos[0][$i]['Supermercado2']) ?></td>
+                                                                                                                <td style="text-align:center;">$ <?php echo trim($datos[0][$i]['Supermercado3']) ?></td>
+                                                                                                                <td style="text-align:center;">$ <?php echo trim($datos[0][$i]['Supermercado4']) ?></td>
+                                                                                                                <td style="text-align:center;">$ <?php echo trim($datos[0][$i]['Supermercado5']) ?></td>
                                                                                                             </tr>
                                                                                                         <?php } ?>
                                                                                                             <tr class="odd">
-                                                                                                                <td >Total: </td>
-                                                                                                                <td>$ <?php echo $datos[1][0]['CostoTotal1'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal2'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal3'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal4'] ?></td>
-                                                                                                                <td >$ <?php echo $datos[1][0]['CostoTotal5'] ?></td>
+                                                                                                                <td style="text-align:center;" >Total: </td>
+                                                                                                                <td style="text-align:center;">$ <?php echo $datos[1][0]['CostoTotal1'] ?></td>
+                                                                                                                <td style="text-align:center;" >$ <?php echo $datos[1][0]['CostoTotal2'] ?></td>
+                                                                                                                <td style="text-align:center;" >$ <?php echo $datos[1][0]['CostoTotal3'] ?></td>
+                                                                                                                <td style="text-align:center;" >$ <?php echo $datos[1][0]['CostoTotal4'] ?></td>
+                                                                                                                <td style="text-align:center;" >$ <?php echo $datos[1][0]['CostoTotal5'] ?></td>
                                                                                                             </tr>
                                                                                                     </tbody>
                                                                                                 </table>
+                                                                                            <a href="modificarPresupuesto.php?idLista=<?php echo $_GET['id']; ?>" style="position:relative;top:40px;left:950px; width: 140px;padding-bottom: 0px;padding-top:0px;" class="buttonReg small fa fa-minus-circle">Modificar</a>
 											</div>
 										</div>
 									</div>
