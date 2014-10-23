@@ -5,8 +5,12 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <?php 
+    //session_start();
+    //include('includes/infoProducto.php');
     session_start();
-    include('includes/infoProducto.php');
+    $bandeja = "traer_datos_producto";
+    include('includes/busqueda.php');
+    //print_r($datosPrd); exit();
 ?>
 <html>
 	<head>
@@ -25,7 +29,7 @@
                 <script>
                      function verInfo(nombre,direccion,horario){
                         
-                        alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion+"<br> Horario: "+ horario +"", function () {
+                        alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion, function () {
                                     
                                     
                               });
@@ -34,7 +38,7 @@
                     function validarPrecio(){
                          alertify.confirm("<p>Esta seguro que quiere validar el precio de este producto?</p>", function (e) {
                                 if (e) {
-                                      $.post("includes/acciones.php",{ accion : 'validarPrecio', idSupermercado : <?php echo $info_producto[0][0]['idSupermercado'] == ''? '"-"':$info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto'] == ''?'"-"':$info_producto[0][0]['idProducto']  ?> } , function(data){
+                                      $.post("includes/acciones.php",{ accion : 'validarPrecio', idSupermercado : <?php echo $datosPrd[0][0]['idSupermercado'] == ''? '"-"':$datosPrd[0][0]['idSupermercado']  ?> , idProducto : <?php echo $datosPrd[0][0]['idProducto'] == ''?'"-"':$datosPrd[0][0]['idProducto']  ?> } , function(data){
                                                                            eval(data);
                                                                         });
                                 }
@@ -49,7 +53,7 @@
                                       var exp = /^[0-9]+(\,[0-9]+)?$/;
                                         var valor =  $('#precioNuevo').val();
                                       if(valor.match(exp)){
-                                          $.post("includes/acciones.php",{ accion : 'modificarPrecio', valor : valor, idSupermercado : <?php echo $info_producto[0][0]['idSupermercado'] == ''? '"-"':$info_producto[0][0]['idSupermercado']  ?> , idProducto : <?php echo $info_producto[0][0]['idProducto'] == ''?'"-"':$info_producto[0][0]['idProducto']  ?> } , function(data){
+                                          $.post("includes/acciones.php",{ accion : 'modificarPrecio', valor : valor, idSupermercado : <?php echo $datosPrd[0][0]['idSupermercado'] == ''? '"-"':$datosPrd[0][0]['idSupermercado']  ?> , idProducto : <?php echo $datosPrd[0][0]['idProducto'] == ''?'"-"':$datosPrd[0][0]['idProducto']  ?> } , function(data){
                                                                            eval(data);     
                                                                         });
                                       }else{
@@ -73,7 +77,7 @@
                                         var supermercado = $('#supermercadoCercano').val();
                                        // alert(supermercado);
                                       if(valor.match(exp) && supermercado !=''){
-                                          $.post("includes/acciones.php",{ accion : 'agregarSupermercado', valor : valor, idSupermercado : supermercado , idProducto : <?php echo $info_producto[0][0]['producto'] == ''?'"-"':$info_producto[0][0]['producto']  ?> } , function(data){
+                                          $.post("includes/acciones.php",{ accion : 'agregarSupermercado', valor : valor, idSupermercado : supermercado , idProducto : <?php echo $datosPrd[0][0]['producto'] == ''?'"-"':$datosPrd[0][0]['producto']  ?> } , function(data){
                                                                            eval(data);     
                                                                         });
                                       }else{
@@ -126,33 +130,35 @@
 									<div>
 										<div class="row">
 											<div class="5u">
-												<a href="" class="image image-full"><img src="data:image/png;base64,<?php echo $info_producto[0][0]['Foto'] ?>" alt="" /></a>
+												<a href="" class="image image-full"><img src="data:image/png;base64,<?php echo $datosPrd[0][0]['Foto'] ?>" alt="" /></a>
 											</div>
 											<div class="5u">
                                                                                             <div class="row">
-                                                                                                <p><b><u><?php echo $info_producto[0][0]['Nombre'] ?></u></b><br>
-                                                                                                <?php if($info_producto[0][0]['nombre_supermercado'] != ''){ ?>
-                                                                                                    Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $info_producto[0][0]['nombre_supermercado'] ?>','<?php echo $info_producto[0][0]['Direccion'] ?>','<?php echo $info_producto[0][0]['Horario'] ?>');"> <?php echo $info_producto[0][0]['nombre_supermercado'] ?></span><br>
+                                                                                                <p><b><u><?php echo $datosPrd[0][0]['producto'] ?></u></b><br>
+                                                                                                <?php if($datosPrd[0][0]['Nombre'] != ''){ ?>
+                                                                                                   Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $datosPrd[0][0]['Nombre']  ?>','<?php echo $datosPrd[0][0]['direccion'] ?>','<?php echo $datosPrd[0][0]['Horario'] ?>');"> <?php echo $datosPrd[0][0]['Nombre']  ?></span><br>
                                                                                                 <?php }else{ ?>
                                                                                                     Supermercado : -
                                                                                                 <?php } ?>
-                                                                                                <?php if($info_producto[0][0]['Valor'] !=''){ 
-                                                                                                     $valor = $info_producto[0][0]['Valor'];
+                                                                                                <?php if($datosPrd[0][0]['valor'] !=''){ 
+                                                                                                     $valor = $datosPrd[0][0]['valor'];
                                                                                                 }else{
                                                                                                     $valor = 0.00;
                                                                                                 }
 ?>
-                                                                                                    Precio : <?php echo '$ '. number_format($valor, 2, ',', '.'); ?><img id="imagen_validez" val="<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>" src="images/val_<?php echo $info_producto[0][0]['Validez']!= ''? $info_producto[0][0]['Validez'] :'0'; ?>.png" style="width:85px;height:30px;"></p>
+                                                                                                    Precio : <?php echo '$ '.$valor?></p>
+                                                                                                
                                                                                                 <?php if(isset($_SESSION['usuario_email'])){ ?>
-                                                                                                <?php if($info_producto[0][0]['nombre_supermercado'] !='' ){ ?>
-                                                                                                    <a href="" onclick="return validarPrecio();">Validar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
-                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado()"> Modificar Otro Supermercado</a>
+                                                                                                <?php if($datosPrd[0][0]['Nombre'] !='' ){ ?>
+                                                                                                <span  style="font-size:20px;">Cantidad de Votos : <?php echo $datosPrd[0][0]['Validez'] ?></span>
+                                                                                                   <a href="" onclick="return validarPrecio();">Votar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
+                                                                                                   <!-- <a href="" id="agregarSupermercado" onclick="return agregarSupermercado()"> Modificar Otro Supermercado</a> -->
                                                                                                 <?php }else{ ?>
-                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado(<?php echo $info_producto[0][0]['producto'] ?>)">Agregar a Supermercado</a>
+                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado(<?php echo $datosPrd[0][0]['producto'] ?>)">Agregar a Supermercado</a>
                                                                                                 <?php }} ?>
                                                                                             </div>
 											</div>
-										</div>
+										</div>	
 									</div>
 														
 										
@@ -163,25 +169,45 @@
 					</div>
 				</div>
 			</div>
+                <div id="banner-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="12u">
+						
+							<!-- Banner -->
+								<div id="banner" class="box">
+															
+									<div>
+										<div class="row">
+											<p>Encontrá el mismo producto en otros supermercados:</p>
+										</div>
+									</div>
+										
+								</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
 			
 		<!-- Features Wrapper -->
 			<div id="features-wrapper">
 				<div class="container">
-                                    <h2>Productos más Visitados</h2> 
 					<div class="row">
-                                           <?php  foreach($productos_visitados[0] as $pr){ ?>
+						<?php for($j=0; $j<count($datosPrdSec[0]);$j++){ ?>
 						<div class="3u">
 						
 							<!-- Box -->
-								<section class="box box-feature">
-                                                                    <a href="VistaProducto.php?idProducto=<?php echo $pr['idProducto'] ?>" class="image image-full"><img src="data:image/png;base64,<?php echo $pr['Foto'] ?>" alt="" /></a>
-									<div class="box-prod">
-											<p><?php echo $pr['Nombre'] .'-'. $pr['Cantidad'] ?></p>
-									</div>
-								</section>
+							<section class="box box-feature">
+                                                            <a href="VistaProducto.php?idSuper=<?php echo base64_encode($datosPrdSec[0][$j]['idSupermercado']); ?>&idProd=<?php echo base64_encode($datosPrdSec[0][$j]['idProducto']); ?>" class="image image-full"><img src="data:image/png;base64,<?php echo $datosPrdSec[0][$j][Foto]; ?>" alt="" /></a>
+								<div class="box-prod">
+										<p><?php echo utf8_encode(ucwords(strtolower($datosPrdSec[0][$j][nombre]))); ?></p>
+										<p><?php echo "$".$datosPrdSec[0][$j][valor]; ?></p>
+								</div>
+							</section>
 
 						</div>
-                                            <?php } ?> 
+						<?php } ?>
 					</div>
 				</div>
 			</div>

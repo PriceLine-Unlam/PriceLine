@@ -77,7 +77,7 @@ if($_POST['accion'] == 'editar'){
     
         // $direccion_google = 'Calle, Población, Provincia / Estado, País';
         //$direccion_google = 'San ignacio 2588, ituzaingo, buenos aires, argentina';
-        $direccion_google = $direccion+' '+$numero +', ' + $localidad_nombre +', ' + $provincia_nombre +', Argentina ';
+        $direccion_google = $direccion.' '.$numero .', ' . $localidad_nombre .', ' . $provincia_nombre .', Argentina ';
         try{
             $resultado = file_get_contents(sprintf('http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s', urlencode($direccion_google)));
             $resultado = json_decode($resultado, TRUE);

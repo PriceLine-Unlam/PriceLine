@@ -32,9 +32,9 @@ if($bandeja == 'sin_usuario' ){
 if($bandeja == 'usuario_login' ){
     
     $datos[] = '';
-	$query = " 	SELECT Direccion, Nro, P.Nombre+' - '+D.Nombre AS provincia, Latitud, Longitud  FROM priceline..Usuarios U
-				INNER JOIN priceline..Departamento D ON U.Localidad = D.ID
-				INNER JOIN priceline..Provincia P ON D.idProvincia = P.ID
+	$query = " 	SELECT Direccion, Nro, P.Nombre+' - '+D.Nombre AS provincia, Latitud, Longitud  FROM Usuarios U
+				INNER JOIN Departamento D ON U.Localidad = D.ID
+				INNER JOIN Provincia P ON D.idProvincia = P.ID
 				WHERE U.Email = '".$_SESSION['usuario_email']."' ";
 	$datosUsr = $sql->fetchArrayMultiple($query);
 	
@@ -61,6 +61,9 @@ if($bandeja == 'traer_datos_producto' ){
 				,D.Nombre+' - '+PROV.Nombre provincia
 				,S.Latitud
 				,S.Longitud
+                                ,PR.Validez
+                                ,S.idSupermercado
+                                ,P.idProducto
 				FROM Precio PR
 				INNER JOIN Producto P ON PR.idProducto = P.idProducto
 				INNER JOIN Supermercado S ON PR.idSupermercado = S.idSupermercado

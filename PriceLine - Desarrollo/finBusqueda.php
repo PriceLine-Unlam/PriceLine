@@ -6,7 +6,7 @@
 -->
 <?php
     session_start();
-	$bandeja = "traer_datos_producto";
+    $bandeja = "traer_datos_producto";
     include('includes/busqueda.php');
 	
 	
@@ -22,12 +22,79 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+                
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/app.css">
 		</noscript>
+                <script>
+                     function verInfo(nombre,direccion,horario){
+                        
+                        alertify.alert("<b><u>Informacion del Supermercado</u></b><br><b>Nombre: "+ nombre+"</b><br> Direccion: "+ direccion, function () {
+                                    
+                                    
+                              });
+                              $('.alertify-dialog').css('height','250px');
+                    }
+                    function validarPrecio(){
+                         alertify.confirm("<p>Esta seguro que quiere validar el precio de este producto?</p>", function (e) {
+                                if (e) {
+                                      $.post("includes/acciones.php",{ accion : 'validarPrecio', idSupermercado : <?php echo $datosPrd[0][0]['idSupermercado'] == ''? '"-"':$datosPrd[0][0]['idSupermercado']  ?> , idProducto : <?php echo $datosPrd[0][0]['idProducto'] == ''?'"-"':$datosPrd[0][0]['idProducto']  ?> } , function(data){
+                                                                           eval(data);
+                                                                        });
+                                }
+                            });
+                             $('.alertify-dialog').css('height','195px');
+                      return false
+                    }
+                    function ModificarPrecio(){
+                        alertify.confirm("<p>Ingrese el nuevo precio : $ <input type='text' id='precioNuevo' style='height: 35px; padding-bottom: 2px;'> </p>", function (e) {
+                                if (e) {
+                                      //alertify.success("Has pulsado '" + alertify.labels.ok + "'");
+                                      var exp = /^[0-9]+(\,[0-9]+)?$/;
+                                        var valor =  $('#precioNuevo').val();
+                                      if(valor.match(exp)){
+                                          $.post("includes/acciones.php",{ accion : 'modificarPrecio', valor : valor, idSupermercado : <?php echo $datosPrd[0][0]['idSupermercado'] == ''? '"-"':$datosPrd[0][0]['idSupermercado']  ?> , idProducto : <?php echo $datosPrd[0][0]['idProducto'] == ''?'"-"':$datosPrd[0][0]['idProducto']  ?> } , function(data){
+                                                                           eval(data);     
+                                                                        });
+                                      }else{
+                                          alertify.error('"El valor ingresado es incorrecto."');
+                                          $('#modificarPrecio').click();
+                                          
+                                      }
+                                      
+                                }
+                            });
+                            $('.alertify-dialog').css('height','190px');
+                              return false;
+                    }
+                    function agregarSupermercado(idProducto){
+                    
+                        alertify.confirm("<p>Seleccione un supermercado de la lista :<select id='supermercadoCercano' style='height: 35px; padding-bottom: 2px;'><?php echo $option_sup; ?></select> </p><p>Ingrese el precio : $ <input type='text' id='precioNuevo' style='height: 35px; padding-bottom: 2px;'> </p>", function (e) {
+                                if (e) {
+                                      //alertify.success("Has pulsado '" + alertify.labels.ok + "'");
+                                      var exp = /^[0-9]+(\,[0-9]+)?$/;
+                                        var valor =  $('#precioNuevo').val();
+                                        var supermercado = $('#supermercadoCercano').val();
+                                       // alert(supermercado);
+                                      if(valor.match(exp) && supermercado !=''){
+                                          $.post("includes/acciones.php",{ accion : 'agregarSupermercado', valor : valor, idSupermercado : supermercado , idProducto : <?php echo $datosPrd[0][0]['producto'] == ''?'"-"':$datosPrd[0][0]['producto']  ?> } , function(data){
+                                                                           eval(data);     
+                                                                        });
+                                      }else{
+                                          alertify.error('"El valor ingresado es incorrecto o no ha seleccionado supermercado."');
+                                          $('#agregarSupermercado').click();
+                                          
+                                      }
+                                      
+                                }
+                            });
+                            $('.alertify-dialog').css('height','300px');
+                              return false;
+                    }
+                </script>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
@@ -67,11 +134,29 @@
 											</div>
 											<div class="7u">
 												<div class="row">
-													<p><?php echo ucwords(strtolower($datosPrd[0][0][producto])); ?>
-													<?php echo $datosPrd[0][0][Nombre].' - '.$datosPrd[0][0][direccion]; ?><br>
-													<?php echo ucwords(strtolower($datosPrd[0][0][provincia])); ?><br>
-													<?php echo "$".$datosPrd[0][0][valor]; ?></p>
-												</div>
+                                                                                                <p><b><u><?php echo $datosPrd[0][0]['producto'] ?></u></b><br>
+                                                                                                <?php if($datosPrd[0][0]['Nombre'] != ''){ ?>
+                                                                                                   Supermercado : <span style="cursor:pointer;" onclick="verInfo('<?php echo $datosPrd[0][0]['Nombre']  ?>','<?php echo $datosPrd[0][0]['direccion'] ?>','<?php echo $datosPrd[0][0]['Horario'] ?>');"> <?php echo $datosPrd[0][0]['Nombre']  ?></span><br>
+                                                                                                <?php }else{ ?>
+                                                                                                    Supermercado : -
+                                                                                                <?php } ?>
+                                                                                                <?php if($datosPrd[0][0]['valor'] !=''){ 
+                                                                                                     $valor = $datosPrd[0][0]['valor'];
+                                                                                                }else{
+                                                                                                    $valor = 0.00;
+                                                                                                }
+?>
+                                                                                                    Precio : <?php echo '$ '.$valor; ?></p>
+                                                                                                
+                                                                                                <?php if(isset($_SESSION['usuario_email'])){ ?>
+                                                                                                <?php if($datosPrd[0][0]['Nombre'] !='' ){ ?>
+                                                                                                <span style="font-size:20px;">Cantidad de Votos : <?php echo $datosPrd[0][0]['Validez'] ?></span>
+                                                                                                   <a href="" onclick="return validarPrecio();">Votar</a><a href="" id="modificarPrecio" onclick="return ModificarPrecio();">Modificar Precio</a>
+                                                                                                   <!-- <a href="" id="agregarSupermercado" onclick="return agregarSupermercado()"> Modificar Otro Supermercado</a> -->
+                                                                                                <?php }else{ ?>
+                                                                                                    <a href="" id="agregarSupermercado" onclick="return agregarSupermercado(<?php echo $datosPrd[0][0]['producto'] ?>)">Agregar a Supermercado</a>
+                                                                                                <?php }} ?>
+                                                                                            </div>
 											</div>
 										</div>
 									</div>
@@ -113,7 +198,7 @@
 						
 							<!-- Box -->
 							<section class="box box-feature">
-								<a href="VistaProducto.php?idProducto=<?php echo $datosPrdSec[0][$j][idProducto] ?>" class="image image-full"><img src="data:image/png;base64,<?php echo $datosPrdSec[0][$j][Foto]; ?>" alt="" /></a>
+                                                            <a href="VistaProducto.php?idSuper=<?php echo base64_encode($datosPrdSec[0][$j]['idSupermercado']); ?>&idProd=<?php echo base64_encode($datosPrdSec[0][$j]['idProducto']); ?>" class="image image-full"><img src="data:image/png;base64,<?php echo $datosPrdSec[0][$j][Foto]; ?>" alt="" /></a>
 								<div class="box-prod">
 										<p><?php echo utf8_encode(ucwords(strtolower($datosPrdSec[0][$j][nombre]))); ?></p>
 										<p><?php echo "$".$datosPrdSec[0][$j][valor]; ?></p>
