@@ -112,8 +112,8 @@ include('includes/presupuesto.php');
 												</div>
 											</div>
                                                                                     <?php if(isset($_SESSION['usuario_email'])) {?>
-                                                                                        <a href="modificarPresupuesto.php?idLista=<?php echo $presupuesto[0][0]['idLista'] ?>" style="position:relative;top:50px;left:390px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Modificar</a>
-                                                                                        <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position: relative; top: 50px; left: 400px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                        <a href="modificarPresupuesto.php?idLista=<?php echo $presupuesto[0][0]['idLista'] ?>" style="position:relative;top:40px;left:850px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Modificar</a>
+                                                                                        <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position:relative;top:40px;left:870px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
                                                                                     <?php } ?>
 										</div>
 									</div>
@@ -141,8 +141,8 @@ include('includes/presupuesto.php');
 												</div>
 											</div>
                                                                                     <?php if(isset($_SESSION['usuario_email'])) {?>
-                                                                                    <a href="modificarPresupuesto.php?idLista=<?php echo $datos[0][0]['idLista'] ?>" style="position:relative;top:50px;left:390px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-pencil">Modificar</a>
-                                                                                    <a href="" onclick="return borrarPresupuesto(<?php echo $datos[0][0]['idLista'] ?>);" style="position:relative;top:50px;left:400px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
+                                                                                    <a href="modificarPresupuesto.php?idLista=<?php echo $presupuesto[0][0]['idLista'] ?>" style="position:relative;top:40px;left:850px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Modificar</a>
+                                                                                        <a href="" onclick="return borrarPresupuesto(<?php echo $presupuesto[0][0]['idLista'] ?>);" style="position:relative;top:40px;left:870px; width: 140px; padding-bottom: 0px;" class="buttonReg small fa fa-minus-circle">Borrar</a>
                                                                                     <?php } ?>
 										</div>
 									</div>
