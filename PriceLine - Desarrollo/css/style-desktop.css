@@ -276,6 +276,13 @@
 			width: 100%;
 			border-radius: 8px;
 		}
+		
+		.image-super img
+		{
+			display: block;
+			width: 100%;
+			border-radius: 8px;
+		}
 
 	.image-full
 	{

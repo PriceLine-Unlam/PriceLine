@@ -8,7 +8,7 @@ $mobile = $detect->isMobile();
 
         <!-- Logo -->
                 <div class="3u">
-                        <h1><a href="index.php" class="image image-full"><img class="position-image" src="images/logo.png" alt="" /></a></h1>
+                        <h1><a href="index.php" class="image image-full-index"><img class="position-image" src="images/logo.png" alt="" /></a></h1>
                         <span></span>
                 </div>
 

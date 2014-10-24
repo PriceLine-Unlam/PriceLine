@@ -59,12 +59,78 @@
 				margin-right: 0.5em;
 				top: 0.05em;
 			}
+			
+	.buttonLog
+	{
+		width: 100%;
+		text-align: center;
+		font-size: 1.35em;
+		padding: 1.1em 0 1.1em 0 !important;
+		margin-bottom: 10px;
+	}
+
+		.buttonLog.fa
+		{
+			padding-right: 0.75em !important;
+		}
+
+			.buttonLog.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
+			
+	.buttonReg
+	{
+		width: 100%;
+		text-align: center;
+		font-size: 1.35em;
+		padding: 1.1em 0 1.1em 0 !important;
+		margin-bottom: 10px;
+	}
+
+		.buttonReg.fa
+		{
+			padding-right: 0.75em !important;
+		}
+
+			.buttonReg.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
+			
+	.buttonMap
+	{
+		width: 50%;
+		text-align: center;
+		font-size: 1.35em;
+		padding: 1.1em 0 1.1em 0 !important;
+		margin-bottom: 10px;
+	}
+
+		.buttonMap.fa
+		{
+			padding-right: 0.75em !important;
+		}
+
+			.buttonMap.fa:before
+			{
+				margin-right: 0.5em;
+				top: 0.05em;
+			}
 
 	.box
 	{
 		padding: 15px 15px 15px 15px;
 		margin: 0;
-	}		
+	}
+
+	.box-prod
+	{
+		padding: 0em 1em 1em 1em;
+		text-align: center;
+	}	
 
 	.box-feature
 	{
@@ -238,13 +304,30 @@
 			width: 100%;
 			border-radius: 8px;
 		}
+		
+		.image-super img
+		{
+			display: block;
+			width: 100%;
+			border-radius: 8px;
+			margin-left: 40px;
+		}
 
 	.image-full
 	{
 		display: block;
-		width: 200%;
+		width: 100%;
 		margin: -30px 0 2.5em 0;
 	}
+	
+	.image-full-index
+	{
+		display: block;
+		width: 300%;
+		margin: -30px 0 2.5em 0;
+		margin-left: 42px;
+	}
+	
 	#logo
 	{
 		text-align: center;
